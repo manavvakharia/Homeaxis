@@ -7,7 +7,6 @@ HomeAxis is a modern, luxury-themed real estate website designed to provide a se
 ## 🌐 Live Demo
 
 🔗 https://manavvakharia.github.io/homeaxis/
-*(Replace with your actual link)*
 
 ---
 
