@@ -1,128 +1,101 @@
-# HomeAxis Real Estate Platform
+# 🏠 HomeAxis – Luxury Real Estate Website
 
-A comprehensive real estate platform with three user profiles: Broker, Builder, and Customer.
+HomeAxis is a modern, luxury-themed real estate website designed to provide a seamless property browsing and enquiry experience. It allows users to explore premium properties, view detailed listings, and connect instantly for bookings or site visits.
 
-## Getting Started
+---
 
-### Opening the Website
+## 🌐 Live Demo
 
-1. **Option 1 (Recommended)**: Open `dashboard.html` in your browser
-   - This is the main entry point where users choose their profile
+🔗 https://manavvakharia.github.io/homeaxis/
+*(Replace with your actual link)*
 
-2. **Option 2**: Open `index.html` in your browser
-   - Click the "Dashboard" button in the navigation bar
-   - Or browse properties directly
+---
 
-3. **Option 3**: Use `redirect.html` for automatic redirect to dashboard
+## 🚀 Features
 
-## Features
+* 🏡 **Buy & Rent Properties** – Browse curated listings across major cities
+* 🔍 **Advanced Filters** – Filter by location, price range, and property type
+* 📄 **Dynamic Property Detail Page** – Displays property-specific data dynamically
+* 🖼️ **Dynamic Image Rendering** – Property images load based on selected listing
+* 📩 **Enquiry System** – Integrated with Google Apps Script for lead collection
+* 💳 **Booking Flow** – Includes booking system with Stripe (test mode)
+* 📊 **EMI Calculator** – Helps users estimate monthly payments
+* 🎨 **Luxury UI/UX** – Premium design with responsive layout and smooth interactions
+* ❤️ **Wishlist (Optional Feature)** – Save preferred properties (login-based)
 
-### 🔄 Cross-Profile Data Sharing
+---
 
-All changes made in any profile are immediately visible across all dashboards:
+## 🛠️ Tech Stack
 
-- **Builder adds property** → Shows in:
-  - Main property listings (index.html)
-  - Customer dashboard
-  - Broker dashboard
+* **Frontend:** HTML5, CSS3, JavaScript
+* **Form Handling:** Google Apps Script
+* **Payment Integration:** Stripe (Test Mode)
+* **Hosting:** GitHub Pages
 
-- **Customer sets preferences** → Shows in:
-  - Broker dashboard (to match customers)
-  - Builder dashboard (to understand demand)
+---
 
-- **Broker adds requirements** → Shows in:
-  - Customer dashboard (to see what brokers need)
-  - Builder dashboard (to understand market)
-
-### User Profiles
-
-#### 🏢 Broker
-- Login/Signup with OTP verification
-- Add customer requirements (age, gender, profession)
-- Set guarantee flat options
-- View customer preferences
-- View builder properties
-
-#### 🏗️ Builder
-- Login/Signup
-- Add property listings with website URLs
-- View customer preferences
-- View broker requirements
-
-#### 👤 Customer
-- Login/Signup
-- Set property preferences (location, area, budget, BHK)
-- View available properties from builders
-- View broker requirements
-
-## Broker Database Connection
-
-The **Broker dashboard** fetches Potential Customers from a MySQL database (customer login stays on localStorage).
-
-### Setup
-
-1. **Install MySQL** and create the database:
-   ```bash
-   mysql -u root -p < people_db.sql
-   ```
-
-2. **Install Node.js dependencies** and start the server:
-   ```bash
-   npm install
-   npm start
-   ```
-
-3. Open `http://localhost:3000/broker-dashboard.html` (after broker login).
-
-4. Configure DB credentials via environment variables (optional):
-   - `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` (default: `people_db`)
-
-If the database is unavailable, the broker falls back to localStorage (seeded customers).
-
-## Data Storage
-
-Customer login and most data use browser localStorage:
-- `brokers` - Broker accounts
-- `builders` - Builder accounts
-- `customers` - Customer accounts
-- `brokerRequirements` - Customer requirements
-- `builderProperties` - Property listings
-- `customerPreferences` - Property preferences
-
-## Real-Time Updates
-
-The platform uses:
-- localStorage events for cross-tab updates
-- Custom events for same-tab updates
-- Automatic page refresh on data changes
-
-## File Structure
+## 📁 Project Structure
 
 ```
-real-estate-frontend/
-├── dashboard.html          # Main dashboard (entry point)
-├── index.html             # Property listings page
-├── broker-login.html      # Broker authentication
-├── broker-dashboard.html  # Broker management
-├── builder-login.html     # Builder authentication
-├── builder-dashboard.html # Builder property management
-├── customer-login.html    # Customer authentication
-├── customer-dashboard.html # Customer preferences
-└── images/                # Property images directory
+homeaxis/
+│
+├── index.html
+├── property-detail.html
+├── payment.html
+├── success.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   └── app.js
+│
+├── images/
+│   ├── signaturevillas.jpg
+│   ├── hero.jpeg
+│   └── ...
 ```
 
-## Usage Flow
+---
 
-1. Open `dashboard.html`
-2. Choose profile (Broker/Builder/Customer)
-3. Sign up or log in
-4. Make changes in your dashboard
-5. See changes reflected in all other dashboards automatically
+## ⚙️ How It Works
 
-## Notes
+1. User browses properties on the homepage
+2. Clicks a property → Opens dynamic property detail page
+3. Views details (image, price, location, etc.)
+4. Clicks **Enquire Now** → Submits form
+5. Data is sent to Google Apps Script
+6. Optional: User proceeds to booking & Stripe payment
 
-- OTP is displayed in console/alert for testing
-- Email confirmation is simulated
-- All data persists in browser localStorage
-- Responsive design for all devices
-- Dark theme throughout
+---
+
+## 💡 Future Improvements
+
+* Backend integration for secure authentication
+* Email notifications after booking/payment
+* Property database & admin panel
+* AI-based property recommendations
+* Image gallery slider & map integration
+
+---
+
+## 📌 Note
+
+This project is built using free tools and focuses on frontend development, UI/UX design, and real-world workflow simulation.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Manav Vakharia**
+**Yohaan Wadia**
+**Renee Punamia**
+📧 contact.homeaxis@gmail.com
+
+---
