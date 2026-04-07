@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Dashboard | RockJeevanam Realty</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<script>
+if(localStorage.getItem('adminLoggedIn') !== 'true'){
+  window.location.href = 'login.html';
+}
+</script>
+
+<style>
+:root{
+  --bg:#f8f6f1;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card:#2a2b25;
+  --text-main:#1c1c1c;
+  --text-muted:#6b6b6b;
+  --border-soft:rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Montserrat, sans-serif;
+  background:var(--bg);
+  color:var(--text-main);
+  min-height:100vh;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#111111;
+  padding:1.2rem 1.8rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+}
+
+.header-left img{
+  height:34px;
+}
+
+header h1{
+  margin:0;
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+}
+
+/* ===== LOGOUT BUTTON ===== */
+button{
+  padding:.65rem 1.6rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  border:none;
+  border-radius:999px;
+  font-weight:800;
+  color:#000;
+  font-size:.7rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .3s ease;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(198,167,94,.45);
+}
+
+/* ===== CONTENT ===== */
+.container{
+  max-width:1180px;
+  margin:3rem auto 4rem;
+  padding:0 1.5rem;
+}
+
+.container p{
+  color:var(--text-muted);
+  font-size:.9rem;
+  margin-bottom:2rem;
+}
+
+/* ===== CARDS GRID ===== */
+/* ===== DARK DASHBOARD CARDS ===== */
+.card{
+  background:#161616;              /* dark luxury */
+  padding:2rem 1.8rem;
+  border-radius:18px;
+  border:1px solid rgba(198,167,94,.18);
+  box-shadow:0 35px 70px rgba(0,0,0,.45);
+  cursor:pointer;
+  transition:all .35s ease;
+  color:#ffffff;
+}
+
+.card h3{
+  margin:.3rem 0 .8rem;
+  font-size:1rem;
+  letter-spacing:.14em;
+  color:var(--gold-soft);          /* strong visible heading */
+}
+
+.card p{
+  font-size:.85rem;
+  color:rgba(255,255,255,.7);      /* readable contrast */
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 50px 90px rgba(0,0,0,.6);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-left">
+    <img src="images/admin.png" alt="HomeAxis Admin Logo">
+    <h1>Admin Dashboard</h1>
+  </div>
+
+  <button onclick="
+    localStorage.removeItem('adminLoggedIn');
+    window.location.href='login.html';
+  ">
+    Logout
+  </button>
+</header>
+
+<div class="container">
+  <p>Welcome to <b>HomeAxis</b> admin panel.</p>
+
+  <div class="card" onclick="location.href='admin-leads.html'">
+  <h3>📩 Leads</h3>
+  <p>View all customer inquiries</p>
+</div>
+
+<div class="card" onclick="location.href='admin-properties.html'">
+  <h3>🏠 Properties</h3>
+  <p>Add / edit property listings</p>
+</div>
+<div class="card" onclick="location.href='admin-settings.html'">
+  <h3>⚙ Settings</h3>
+  <p>Manage admin configuration</p>
+</div>
+</div>
+
+</body>
+</html>

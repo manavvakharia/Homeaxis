@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Builder Dashboard | HomeAxis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<script>
+/* 🔐 PROTECT PAGE */
+if (localStorage.getItem("builderLoggedIn") !== "true") {
+  location.href = "builder-login.html";
+}
+</script>
+
+<style>
+:root{
+  --bg:#f8f6f1;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card:#161616;
+  --text-main:#1c1c1c;
+  --text-light:#ffffff;
+  --text-muted:#6b6b6b;
+  --border-soft:rgba(198,167,94,.18);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Montserrat,sans-serif;
+  background:var(--bg);
+  color:var(--text-main);
+  min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  padding:1.2rem 2rem;
+  background:#111111;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:900;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  padding:.65rem 1.6rem;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  font-weight:800;
+  font-size:.7rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(198,167,94,.45);
+}
+
+/* ================= LAYOUT ================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:3rem 1.5rem 4rem;
+}
+
+/* ================= SECTIONS ================= */
+
+.section{
+  background:var(--card);
+  border-radius:22px;
+  padding:2.5rem;
+  margin-bottom:2.5rem;
+  border:1px solid var(--border-soft);
+  box-shadow:0 35px 80px rgba(0,0,0,.15);
+  color:var(--text-light);
+  transition:.3s ease;
+}
+
+.section:hover{
+  border-color:var(--gold);
+  box-shadow:0 50px 100px rgba(0,0,0,.25);
+}
+
+.section h2{
+  margin-bottom:1.8rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  font-size:.95rem;
+}
+
+/* ================= FORM ================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.2rem;
+}
+
+input,select,textarea{
+  padding:.8rem 1rem;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#111111;
+  color:#ffffff;
+  font-size:.85rem;
+  transition:.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(198,167,94,.15);
+}
+
+textarea{
+  margin-top:1.2rem;
+  min-height:100px;
+}
+
+/* ================= PROPERTY CARDS ================= */
+
+.card{
+  background:#111111;
+  border-radius:16px;
+  padding:1.4rem;
+  border:1px solid rgba(198,167,94,.15);
+  transition:.3s ease;
+}
+
+.card:hover{
+  border-color:var(--gold);
+  transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.card strong{
+  display:block;
+  margin-bottom:.4rem;
+  color:var(--gold-soft);
+  letter-spacing:.05em;
+}
+
+.muted{
+  color:rgba(255,255,255,.6);
+  font-size:.85rem;
+}
+.image-preview{
+  margin-top:.9rem;
+  border:1px solid rgba(198,167,94,.2);
+  border-radius:12px;
+  padding:.7rem;
+  background:#101010;
+}
+.image-preview img{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:10px;
+  display:none;
+}
+.image-preview small{
+  display:block;
+  margin-top:.5rem;
+  color:rgba(255,255,255,.65);
+  font-size:.74rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">🏗️ BUILDER DASHBOARD</div>
+    <button class="btn" onclick="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ADD PROPERTY -->
+  <div class="section">
+    <h2>Add Property</h2>
+
+    <form id="propertyForm" onsubmit="addProperty(event)">
+      <div class="grid">
+        <input name="name" placeholder="Property Name" required>
+        <input name="location" placeholder="Location" required>
+        <select name="type" required>
+          <option value="">Property Type</option>
+          <option>Apartment</option>
+          <option>Villa</option>
+          <option>Commercial</option>
+          <option>Plot</option>
+        </select>
+        <input name="price" type="number" placeholder="Price ₹" required>
+        <input name="area" type="number" placeholder="Area sq.ft" required>
+        <input name="bhk" placeholder="BHK (e.g. 3 or 3 BHK)" required>
+        <select name="reraChecked" required>
+          <option value="">RERA Checked?</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <select name="possessionStatus" required>
+          <option value="">Possession Status</option>
+          <option value="Ready">Ready</option>
+          <option value="Under Construction">Under Construction</option>
+          <option value="OC Received">OC Received</option>
+        </select>
+        <input name="image" placeholder="Image URL (optional)">
+        <input name="imageFile" type="file" accept="image/*">
+      </div>
+      <div class="image-preview">
+        <img id="builderImagePreview" alt="Property image preview" onerror="this.style.display='none'; document.getElementById('builderPreviewStatus').textContent='Could not load image. Check URL/path.';">
+        <small id="builderPreviewStatus">Preview will appear here</small>
+      </div>
+      <textarea name="desc" placeholder="Description" required></textarea>
+      <button class="btn" style="margin-top:1rem">Add Property</button>
+    </form>
+  </div>
+
+  <!-- YOUR PROPERTIES -->
+  <div class="section">
+    <h2>Your Properties</h2>
+    <div id="properties" class="grid"></div>
+  </div>
+
+</div>
+
+<script>
+const builderEmail = localStorage.getItem("builderEmail");
+
+function logout(){
+  localStorage.removeItem("builderLoggedIn");
+  localStorage.removeItem("builderEmail");
+  location.href="index.html";
+}
+
+function readFileAsDataURL(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function normalizeImageValue(raw){
+  const value = String(raw || "").trim();
+  if(!value) return "";
+  const isAbsoluteWeb = /^(https?:)?\/\//i.test(value);
+  const isData = /^data:image\//i.test(value);
+  const isProjectRelative = /^(images\/|\.\/images\/|\/images\/)/i.test(value);
+  const windowsPathLike = /^[a-zA-Z]:\\/.test(value) || value.includes("\\");
+  const looksLikeFileName = !value.includes("://");
+  if (isAbsoluteWeb || isData || isProjectRelative) return value;
+  if (windowsPathLike) {
+    const fileName = value.split("\\").pop();
+    return fileName ? `images/${fileName}` : "";
+  }
+  if (looksLikeFileName) return `images/${value.replace(/^\/+/, "")}`;
+  return value;
+}
+
+function setupBuilderImagePreview(){
+  const form = document.getElementById("propertyForm");
+  if(!form) return;
+  const urlInput = form.querySelector('input[name="image"]');
+  const fileInput = form.querySelector('input[name="imageFile"]');
+  const preview = document.getElementById("builderImagePreview");
+  const status = document.getElementById("builderPreviewStatus");
+  if(!urlInput || !fileInput || !preview || !status) return;
+
+  const showFromUrl = () => {
+    const src = normalizeImageValue(urlInput.value);
+    if(!src){
+      preview.style.display = "none";
+      status.textContent = "Preview will appear here";
+      return;
+    }
+    preview.src = src;
+    preview.style.display = "block";
+    status.textContent = "Preview from image URL/path";
+  };
+
+  const showFromFile = async () => {
+    const file = fileInput.files?.[0];
+    if(!file){
+      showFromUrl();
+      return;
+    }
+    try{
+      preview.src = await readFileAsDataURL(file);
+      preview.style.display = "block";
+      status.textContent = "Preview from uploaded file";
+    } catch {
+      preview.style.display = "none";
+      status.textContent = "Could not read selected file";
+    }
+  };
+
+  urlInput.addEventListener("input", showFromUrl);
+  fileInput.addEventListener("change", showFromFile);
+}
+
+async function addProperty(e){
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const imageUrl = normalizeImageValue(f.get("image"));
+  const imageFile = f.get("imageFile");
+  let imageValue = imageUrl;
+
+  if (!imageValue && imageFile && imageFile.size > 0) {
+    imageValue = await readFileAsDataURL(imageFile);
+  }
+
+  if (!imageValue) {
+    alert("Please provide image URL or upload an image file.");
+    return;
+  }
+
+  const property = {
+    id: `prop_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+    name:f.get("name"),
+    propertyName:f.get("name"),
+    location:f.get("location"),
+    type:f.get("type"),
+    propertyType:f.get("type"),
+    price:f.get("price"),
+    area:f.get("area"),
+    bhk:f.get("bhk"),
+    reraChecked:f.get("reraChecked"),
+    possessionStatus:f.get("possessionStatus"),
+    desc:f.get("desc"),
+    image:imageValue,
+    builderEmail,
+    sourceRole:"builder",
+    status:"pending",
+    createdAt:Date.now()
+  };
+
+  const list = JSON.parse(localStorage.getItem("builderProperties") || "[]");
+  list.push(property);
+  localStorage.setItem("builderProperties", JSON.stringify(list));
+
+  e.target.reset();
+  const preview = document.getElementById("builderImagePreview");
+  const status = document.getElementById("builderPreviewStatus");
+  if(preview) preview.style.display = "none";
+  if(status) status.textContent = "Preview will appear here";
+  loadProperties();
+}
+
+function loadProperties(){
+  const list = JSON.parse(localStorage.getItem("builderProperties") || "[]")
+    .filter(p => p.builderEmail === builderEmail);
+
+  const box = document.getElementById("properties");
+  if(!list.length){
+    box.innerHTML = `<p class="muted">No properties added yet.</p>`;
+    return;
+  }
+
+  box.innerHTML = list.map((p,i)=>`
+    <div class="card">
+      <strong>${p.name}</strong>
+      <div class="muted">Status: ${(p.status || "pending").toUpperCase()}</div>
+      <div class="muted">${p.location} · ${p.type}</div>
+      <div class="muted">₹${Number(p.price).toLocaleString()} · ${p.area} sq.ft</div>
+      <div class="muted">${p.bhk}</div>
+      <div class="muted">RERA: ${(p.reraChecked || "yes").toUpperCase()}</div>
+      <div class="muted">Possession: ${p.possessionStatus || "Ready"}</div>
+      <div class="muted">Image: ${p.image ? "Added" : "Not added"}</div>
+      <p class="muted">${p.desc}</p>
+      <button class="btn" onclick="removeProperty(${i})">Remove</button>
+    </div>
+  `).join("");
+}
+
+function removeProperty(i){
+  let all = JSON.parse(localStorage.getItem("builderProperties") || "[]");
+  const mine = all.filter(p=>p.builderEmail===builderEmail);
+  const target = mine[i];
+  all = all.filter(p => p.id !== target.id);
+  localStorage.setItem("builderProperties", JSON.stringify(all));
+  loadProperties();
+}
+
+loadProperties();
+setupBuilderImagePreview();
+</script>
+
+</body>
+</html>

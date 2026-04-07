@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Dashboard | HomeAxis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<script>
+/* 🔐 AUTH GUARD */
+if (localStorage.getItem("customerLoggedIn") !== "true") {
+  window.location.href = "customer-login.html";
+}
+</script>
+
+<style>:root{
+  --bg:#f8f6f1;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card:#161616;
+  --text-main:#1c1c1c;
+  --text-light:#ffffff;
+  --text-muted:#6b6b6b;
+  --border-soft:rgba(198,167,94,.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Montserrat,sans-serif;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text-main);
+}
+
+/* ===== HEADER ===== */
+
+header{
+  background:#111111;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  padding:1.2rem 2rem;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:900;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+}
+
+.btn{
+  padding:.6rem 1.6rem;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(198,167,94,.4);
+}
+
+/* ===== LAYOUT ===== */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:3rem 1.5rem 4rem;
+}
+
+/* ===== SECTIONS ===== */
+
+.section{
+  background:var(--card);
+  border-radius:22px;
+  padding:2.5rem;
+  border:1px solid var(--border-soft);
+  margin-bottom:2.5rem;
+  box-shadow:0 35px 80px rgba(0,0,0,.12);
+  color:var(--text-light);
+  transition:.3s ease;
+}
+
+.section:hover{
+  border-color:var(--gold);
+  box-shadow:0 50px 100px rgba(0,0,0,.2);
+}
+
+.section h2{
+  font-size:.95rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  margin-bottom:1.8rem;
+  color:var(--gold-soft);
+}
+
+/* ===== FORM ===== */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.2rem;
+}
+
+label{
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.6);
+}
+
+input,select{
+  padding:.8rem 1rem;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#111111;
+  color:#ffffff;
+  font-size:.85rem;
+  transition:.3s ease;
+}
+
+input:focus,
+select:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(198,167,94,.15);
+}
+
+/* ===== SAVED PREFERENCES ===== */
+
+.preferences-box{
+  margin-top:1.5rem;
+  padding:1.4rem;
+  border-radius:14px;
+  border:1px solid rgba(198,167,94,.18);
+  background:#111111;
+}
+
+.preferences-box div{
+  font-size:.85rem;
+  color:rgba(255,255,255,.7);
+  margin-bottom:.4rem;
+}
+
+/* ===== PROPERTY GRID ===== */
+
+.properties-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:2rem;
+  margin-top:1rem;
+}
+
+/* ===== PROPERTY CARD ===== */
+
+.property-card{
+  position:relative;
+  background:#111111;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(198,167,94,.15);
+  transition:.35s ease;
+  cursor:pointer;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.property-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 35px 80px rgba(0,0,0,.35);
+}
+
+.property-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+
+.property-card:hover img{
+  transform:scale(1.06);
+}
+
+.property-info{
+  padding:1.6rem;
+}
+
+.property-info h3{
+  font-size:1rem;
+  margin-bottom:.4rem;
+  color:var(--gold-soft);
+  letter-spacing:.05em;
+}
+.property-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  margin:.55rem 0 .7rem;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:.3rem .7rem;
+  font-size:.6rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.badge-verified{
+  background:rgba(60,200,120,.16);
+  color:#7cf2b1;
+  border:1px solid rgba(60,200,120,.35);
+}
+.badge-rera{
+  background:rgba(198,167,94,.15);
+  color:var(--gold-soft);
+  border:1px solid rgba(198,167,94,.35);
+}
+
+.property-location{
+  font-size:.8rem;
+  color:rgba(255,255,255,.6);
+  margin-bottom:.7rem;
+}
+
+.property-price{
+  font-size:1.1rem;
+  font-weight:800;
+  color:#ffffff;
+  margin-bottom:.5rem;
+}
+
+.property-details{
+  display:flex;
+  gap:1rem;
+  font-size:.8rem;
+  color:rgba(255,255,255,.6);
+  margin-top:.8rem;
+  padding-top:.8rem;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.property-keyfacts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.55rem;
+  margin-top:.75rem;
+}
+.kf{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:.45rem .5rem;
+  background:rgba(255,255,255,.02);
+}
+.kf-label{
+  display:block;
+  font-size:.55rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+.kf-value{
+  display:block;
+  margin-top:.16rem;
+  font-size:.72rem;
+  color:#fff;
+  font-weight:600;
+}
+
+.property-type{
+  display:inline-block;
+  padding:.35rem .8rem;
+  background:rgba(198,167,94,.15);
+  color:var(--gold-soft);
+  border-radius:8px;
+  font-size:.65rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-top:.6rem;
+}
+
+/* ===== BOOK BUTTON ===== */
+
+.book-btn{
+  margin-top:1.2rem;
+  width:100%;
+  padding:.8rem 1rem;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.book-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 35px rgba(198,167,94,.45);
+}
+.booking-note{
+  margin-top:.45rem;
+  font-size:.68rem;
+  color:rgba(255,255,255,.62);
+}
+
+/* ===== WISHLIST BUTTON ===== */
+
+.wishlist-btn{
+  position:absolute;
+  top:.9rem;
+  right:.9rem;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  background:rgba(0,0,0,.65);
+  color:#fff;
+  font-size:1.2rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.25s ease;
+}
+
+.wishlist-btn:hover{
+  transform:scale(1.1);
+}
+
+.wishlist-btn.filled{
+  color:#e74c3c;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Customer Dashboard</div>
+    <div>
+      <span id="customerEmail" style="margin-right:1rem;font-size:.8rem;"></span>
+      <button class="btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="section">
+    <h2>Profile</h2>
+    <p class="muted-text" style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">Brokers use this to match you with suitable properties.</p>
+    <form id="profileForm" onsubmit="saveProfile(event)">
+      <div class="form-grid">
+        <div>
+          <label>Age</label>
+          <input type="number" name="age" min="18" max="100" placeholder="Age">
+        </div>
+        <div>
+          <label>Gender</label>
+          <select name="gender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Profession</label>
+          <select name="profession">
+            <option value="">Select</option>
+            <option>IT Professional</option>
+            <option>Doctor</option>
+            <option>Engineer</option>
+            <option>Business Owner</option>
+            <option>Government Employee</option>
+            <option>Teacher</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Marital Status</label>
+          <select name="maritalStatus">
+            <option value="">Select</option>
+            <option>Single</option>
+            <option>Married</option>
+            <option>Divorced</option>
+            <option>Widowed</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" style="margin-top:1rem;">Save Profile</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Property Preferences</h2>
+
+    <form id="preferencesForm" onsubmit="savePreferences(event)">
+      <div class="form-grid">
+        <div>
+          <label>Location</label>
+          <select name="location" required>
+            <option>Mumbai</option><option>Delhi</option><option>Bangalore</option>
+            <option>Pune</option><option>Goa</option><option>Hyderabad</option>
+            <option>Chennai</option><option>Gurgaon</option><option>Noida</option>
+            <option>Jaipur</option><option>Surat</option><option>Ahmedabad</option>
+            <option>Any</option>
+          </select>
+        </div>
+        <div>
+          <label>Property Type</label>
+          <select name="type" required>
+            <option>Apartment</option><option>Villa</option>
+            <option>Commercial</option><option>Plot</option>
+          </select>
+        </div>
+        <div>
+          <label>BHK</label>
+          <select name="bhk" required>
+            <option>1 BHK</option><option>2 BHK</option>
+            <option>3 BHK</option><option>4+ BHK</option>
+          </select>
+        </div>
+        <div>
+          <label>Max Budget (₹)</label>
+          <input type="number" name="budget" required>
+        </div>
+      </div>
+      <br>
+      <button class="btn">Save Preferences</button>
+    </form>
+
+    <div id="savedPrefs" class="preferences-box" style="display:none;"></div>
+  </div>
+
+  <div class="section">
+    <h2>Wishlist</h2>
+    <p class="muted-text" style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">Save properties you like for quick access.</p>
+    <div id="wishlist" class="properties-grid"></div>
+    <p id="wishlistEmpty" style="display:none;color:var(--muted);font-size:.9rem;">Your wishlist is empty. Add properties from the list below.</p>
+  </div>
+
+  <div class="section">
+    <h2>Properties</h2>
+    <p class="muted-text" style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">Same listings as on the main website, filtered by your preferences.</p>
+    <div id="properties" class="properties-grid"></div>
+  </div>
+
+</div>
+
+<script>
+const email = localStorage.getItem("customerEmail");
+document.getElementById("customerEmail").innerText = email;
+
+/* LOGOUT */
+function logout(){
+  localStorage.removeItem("customerLoggedIn");
+  localStorage.removeItem("customerEmail");
+  window.location.href = "index.html";
+}
+
+/* PROFILE */
+function loadProfile(){
+  const users = JSON.parse(localStorage.getItem("customers") || "[]");
+  const user = users.find(u => u.email === email);
+  const form = document.getElementById("profileForm");
+  if(!form || !user) return;
+  form.age.value = user.age || "";
+  form.gender.value = user.gender || "";
+  form.profession.value = user.profession || "";
+  form.maritalStatus.value = user.maritalStatus || "";
+}
+
+function saveProfile(e){
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = { age: parseInt(fd.get("age"), 10) || null, gender: fd.get("gender") || "", profession: fd.get("profession") || "", maritalStatus: fd.get("maritalStatus") || "" };
+  const users = JSON.parse(localStorage.getItem("customers") || "[]");
+  const idx = users.findIndex(u => u.email === email);
+  if(idx >= 0){
+    users[idx] = { ...users[idx], ...data };
+    localStorage.setItem("customers", JSON.stringify(users));
+    alert("Profile saved");
+  }
+}
+
+/* SAVE PREFERENCES */
+function savePreferences(e){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  const allPrefs = JSON.parse(localStorage.getItem("customerPreferences") || "{}");
+  allPrefs[email] = data;
+  localStorage.setItem("customerPreferences", JSON.stringify(allPrefs));
+  loadPreferences();
+  loadProperties();
+  alert("Preferences saved");
+}
+
+/* LOAD PREFERENCES */
+function loadPreferences(){
+  const prefs = JSON.parse(localStorage.getItem("customerPreferences") || "{}")[email];
+  if(!prefs) return;
+  const box = document.getElementById("savedPrefs");
+  box.style.display="block";
+  box.innerHTML = `
+    <div><strong>Location:</strong> ${prefs.location}</div>
+    <div><strong>Type:</strong> ${prefs.type}</div>
+    <div><strong>BHK:</strong> ${prefs.bhk}</div>
+    <div><strong>Budget:</strong> ₹${Number(prefs.budget).toLocaleString()}</div>
+  `;
+  // Populate form with saved preferences
+  const form = document.getElementById("preferencesForm");
+  if(form){
+    form.location.value = prefs.location || "";
+    form.type.value = prefs.type || "";
+    form.bhk.value = prefs.bhk || "";
+    form.budget.value = prefs.budget || "";
+  }
+}
+
+function bookProperty(propertyName, amount){
+  localStorage.setItem("bookingProperty", propertyName);
+  window.location.href = "payment.html";
+}
+
+function bookPropertyFromCard(el){
+  const name = el.getAttribute("data-name") || "";
+  if(name) bookProperty(name, 2000);
+}
+
+/* WISHLIST */
+function getWishlist(){
+  const all = JSON.parse(localStorage.getItem("customerWishlist") || "{}");
+  return all[email] || [];
+}
+
+function setWishlist(arr){
+  const all = JSON.parse(localStorage.getItem("customerWishlist") || "{}");
+  all[email] = arr;
+  localStorage.setItem("customerWishlist", JSON.stringify(all));
+}
+
+function wishlistKey(p){ return `${(p.name||"").toLowerCase()}|${(p.location||"").toLowerCase()}`; }
+
+function isInWishlist(p){
+  return getWishlist().some(w => wishlistKey(w) === wishlistKey(p));
+}
+
+function addToWishlist(p, e){
+  if(e) e.stopPropagation();
+  const list = getWishlist();
+  if(list.some(w => wishlistKey(w) === wishlistKey(p))) return;
+  list.push({
+    name:p.name, location:p.location, locationFull:p.locationFull, type:p.type, price:p.price, bhk:p.bhk, area:p.area, image:p.image,
+    reraChecked: p.reraChecked || "yes", possessionStatus: p.possessionStatus || "Ready"
+  });
+  setWishlist(list);
+  loadWishlist();
+  loadProperties();
+}
+
+function removeFromWishlist(p, e){
+  if(e) e.stopPropagation();
+  const list = getWishlist().filter(w => wishlistKey(w) !== wishlistKey(p));
+  setWishlist(list);
+  loadWishlist();
+  loadProperties();
+}
+
+function removeFromWishlistByKey(key, e){
+  if(e) e.stopPropagation();
+  const list = getWishlist().filter(w => wishlistKey(w) !== key);
+  setWishlist(list);
+  loadWishlist();
+  loadProperties();
+}
+
+function toggleWishlist(p, e){
+  if(e) e.stopPropagation();
+  if(isInWishlist(p)) removeFromWishlist(p, e);
+  else addToWishlist(p, e);
+}
+
+function toggleWishlistFromCard(btn, e){
+  if(e) e.stopPropagation();
+  const card = btn.closest(".property-card");
+  if(!card) return;
+  const p = {
+    name: card.dataset.name,
+    location: card.dataset.location,
+    locationFull: card.dataset.locationfull,
+    type: card.dataset.type,
+    price: Number(card.dataset.price) || 0,
+    bhk: card.dataset.bhk,
+    area: card.dataset.area,
+    image: card.dataset.image,
+    reraChecked: card.dataset.rera || "yes",
+    possessionStatus: card.dataset.possession || "Ready"
+  };
+  toggleWishlist(p, e);
+}
+
+function loadWishlist(){
+  const list = getWishlist();
+  const el = document.getElementById("wishlist");
+  const empty = document.getElementById("wishlistEmpty");
+  if(!list.length){
+    el.innerHTML = "";
+    if(empty) empty.style.display = "block";
+    return;
+  }
+  if(empty) empty.style.display = "none";
+  el.innerHTML = list.map(p => {
+    const key = wishlistKey(p).replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    const reraLabel = String(p.reraChecked || "yes").toLowerCase() === "yes" ? "RERA Checked" : "RERA Pending";
+    const possession = p.possessionStatus || "Ready";
+    return `
+    <div class="property-card" data-name="${(p.name||"").replace(/"/g, "&quot;")}" onclick="bookPropertyFromCard(this)">
+      <button class="wishlist-btn filled" type="button" onclick="removeFromWishlistByKey('${key}', event)" title="Remove from wishlist">♥</button>
+      <img src="${normalizeImageValue(p.image)}" alt="${escHtml(p.name)}" onerror="this.src='images/hero.jpeg';">
+      <div class="property-info">
+        <h3>${escHtml(p.name)}</h3>
+        <div class="property-location">📍 ${escHtml(p.locationFull || p.location)}</div>
+        <div class="property-badges">
+          <span class="badge badge-verified">Verified</span>
+          <span class="badge badge-rera">${reraLabel}</span>
+        </div>
+        <div class="property-price">${formatPrice(p.price)}</div>
+        <div class="property-details"><span>${escHtml(p.bhk)}</span>${p.area ? `<span>${escHtml(p.area)}</span>` : ""}</div>
+        <div class="property-keyfacts">
+          <div class="kf"><span class="kf-label">BHK</span><span class="kf-value">${escHtml(p.bhk || "N/A")}</span></div>
+          <div class="kf"><span class="kf-label">Area</span><span class="kf-value">${escHtml(p.area || "N/A")}</span></div>
+          <div class="kf"><span class="kf-label">Possession</span><span class="kf-value">${escHtml(possession)}</span></div>
+        </div>
+        <span class="property-type">${escHtml(p.type)}</span>
+        <button class="book-btn" type="button" onclick="event.stopPropagation(); bookPropertyFromCard(this.closest('.property-card'))">Book Now (₹2,000 Token)</button>
+        <div class="booking-note">Refundable token. Terms apply.</div>
+      </div>
+    </div>
+  `;
+  }).join("");
+}
+
+function escHtml(s){
+  const d = document.createElement("div");
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function formatPrice(price){
+  const n = Number(price) || 0;
+  if(n >= 10000000) return "₹" + (n/10000000).toFixed(1) + " Cr onwards";
+  if(n >= 100000) return "₹" + (n/100000).toFixed(1) + " Lakhs onwards";
+  return "₹" + n.toLocaleString();
+}
+
+function normalizeImageValue(raw){
+  const value = String(raw || "").trim();
+  if(!value) return "images/hero.jpeg";
+  const isAbsoluteWeb = /^(https?:)?\/\//i.test(value);
+  const isData = /^data:image\//i.test(value);
+  const isProjectRelative = /^(images\/|\.\/images\/|\/images\/)/i.test(value);
+  const windowsPathLike = /^[a-zA-Z]:\\/.test(value) || value.includes("\\");
+  const looksLikeFileName = !value.includes("://");
+  if (isAbsoluteWeb || isData || isProjectRelative) return value;
+  if (windowsPathLike) {
+    const fileName = value.split("\\").pop();
+    return fileName ? `images/${fileName}` : "images/hero.jpeg";
+  }
+  if (looksLikeFileName) return `images/${value.replace(/^\/+/, "")}`;
+  return value;
+}
+
+/* Same static properties as on index.html - exact website listings */
+const WEBSITE_PROPERTIES = [
+  { name: "Signature Villas", location: "Mumbai", locationFull: "Mumbai, Maharashtra", type: "Villa", price: 16000000, bhk: "3-4 BHK", area: "2500-3500 sq.ft", image: "images/signaturevillas.jpg" },
+  { name: "Skyline Residences", location: "Bangalore", locationFull: "Bangalore, Karnataka", type: "Apartment", price: 8500000, bhk: "2-3 BHK", area: "1200-1800 sq.ft", image: "images/The Rise.jpeg" },
+  { name: "Business suites", location: "Delhi", locationFull: "Delhi, NCR", type: "Commercial", price: 4500000, bhk: "Office Space", area: "800-1500 sq.ft", image: "images/a 25.jpeg" },
+  { name: "Grandeur Heights", location: "Hyderabad", locationFull: "Hyderabad, Telangana", type: "Apartment", price: 12000000, bhk: "3-4 BHK", area: "1800-2400 sq.ft", image: "images/grandeurheights.jpeg" },
+  { name: "Serenity Villas", location: "Pune", locationFull: "Alibaug, Maharashtra", type: "Villa", price: 9500000, bhk: "3 BHK", area: "2200 sq.ft", image: "images/serenityvilla.jpeg" },
+  { name: "Coastal Residences", location: "Chennai", locationFull: "Chennai, Tamil Nadu", type: "Apartment", price: 7500000, bhk: "2-3 BHK", area: "1400-1900 sq.ft", image: "images/coastal.jpeg" },
+  { name: "Elite towers", location: "Delhi", locationFull: "Gurgaon, Haryana", type: "Apartment", price: 18000000, bhk: "3-4 BHK", area: "2000-2800 sq.ft", image: "images/Lodha.jpeg" },
+  { name: "Beachfront Villas", location: "Goa", locationFull: "Goa", type: "Villa", price: 25000000, bhk: "4-5 BHK", area: "3500-4500 sq.ft", image: "images/Waterfront villa with sliding glass doors.jpeg" },
+  { name: "Tech Park Office", location: "Delhi", locationFull: "Noida, Uttar Pradesh", type: "Commercial", price: 6000000, bhk: "Office Space", area: "1000-2000 sq.ft", image: "images/download (9).jpeg" },
+  { name: "Residential Plot", location: "Jaipur", locationFull: "Jodhpur, Rajasthan", type: "Plot", price: 5500000, bhk: "Residential Plot", area: "1200-2000 sq.yd", image: "images/Faire le plein d'inspiration pour vos décorations !.jpeg" },
+  { name: "Riverside Mansion", location: "Surat", locationFull: "Surat, Gujarat", type: "Villa", price: 50000000, bhk: "5 BHK", area: "13000-17000 sq.ft", image: "images/Gemini_Generated_Image_83oipv83oipv83oi.png" },
+  { name: "Gujarat Heritage Villas", location: "Ahmedabad", locationFull: "Ahmedabad, Gujarat", type: "Villa", price: 100000000, bhk: "10 BHK", area: "20000 sq.ft", image: "images/gujrati villa.png" }
+];
+
+/* Location match: Delhi includes Noida/Gurgaon, Pune includes Alibaug, Jaipur includes Jodhpur */
+function locationMatches(prefLoc, propLoc, propLocFull){
+  if(!prefLoc || prefLoc.toLowerCase() === "any") return true;
+  const p = prefLoc.toLowerCase();
+  const loc = (propLoc || "").toLowerCase();
+  const full = (propLocFull || "").toLowerCase();
+  const combined = loc + " " + full;
+  if(loc.includes(p) || full.includes(p) || combined.includes(p)) return true;
+  if(p === "delhi" && (loc.includes("noida") || loc.includes("gurgaon") || full.includes("ncr"))) return true;
+  if(p === "gurgaon" && (loc.includes("gurgaon") || full.includes("gurgaon"))) return true;
+  if(p === "noida" && (loc.includes("noida") || full.includes("noida"))) return true;
+  if(p === "pune" && (loc.includes("alibaug") || full.includes("maharashtra"))) return true;
+  if(p === "jaipur" && (loc.includes("jodhpur") || loc.includes("jaipur") || full.includes("rajasthan"))) return true;
+  return false;
+}
+
+function bhkMatches(prefBhk, propBhk, propType){
+  if(!prefBhk || !propBhk) return true;
+  if(["Commercial","Plot"].includes(propType)) return true;
+  const pref = String(prefBhk).toLowerCase();
+  const prop = String(propBhk).toLowerCase();
+  const prefNum = parseInt(pref, 10) || 0;
+  const range = prop.match(/(\d+)\s*-\s*(\d+)/) || prop.match(/(\d+)/);
+  let propMin = 0, propMax = 0;
+  if(range){
+    if(range[2]) { propMin = parseInt(range[1],10); propMax = parseInt(range[2],10); }
+    else { propMin = propMax = parseInt(range[1],10); }
+  }
+  if(pref.includes("+")) return propMax >= prefNum || propMin >= prefNum;
+  return (propMin <= prefNum && prefNum <= propMax) || propMin === prefNum || propMax === prefNum;
+}
+
+function typeMatches(prefType, propType){
+  if(!prefType) return true;
+  const p = (prefType || "").toLowerCase();
+  const t = (propType || "").toLowerCase();
+  if(p === t) return true;
+  if(p === "villa" && t === "mansion") return true;
+  return false;
+}
+
+/* LOAD PROPERTIES - same as website, filtered by preferences */
+function loadProperties(){
+  const prefs = JSON.parse(localStorage.getItem("customerPreferences") || "{}")[email];
+  const builderList = JSON.parse(localStorage.getItem("builderProperties") || "[]");
+  const el = document.getElementById("properties");
+
+  let all = WEBSITE_PROPERTIES.map(p => ({ ...p, isBuilder: false }));
+  const existingKeys = new Set(WEBSITE_PROPERTIES.map(p => `${p.name}|${p.location}`.toLowerCase()));
+  const builderImages = [
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=600&fit=crop"
+  ];
+  builderList.forEach((p, i) => {
+    const name = p.name || p.propertyName || "";
+    const loc = p.location || "";
+    const key = `${name}|${loc}`.toLowerCase();
+    if(existingKeys.has(key)) return;
+    existingKeys.add(key);
+    all.push({
+      name, location: loc, locationFull: loc, type: p.type || p.propertyType || "Apartment",
+      price: Number(p.price) || 0, bhk: p.bhk || "", area: p.area ? p.area + " sq.ft" : "",
+      image: p.image || builderImages[i % builderImages.length], isBuilder: true,
+      reraChecked: p.reraChecked || "yes", possessionStatus: p.possessionStatus || "Ready"
+    });
+  });
+
+  if(prefs && prefs.location && prefs.type && prefs.bhk && prefs.budget){
+    const maxBudget = Number(prefs.budget) || Infinity;
+    all = all.filter(p => {
+      if(!locationMatches(prefs.location, p.location, p.locationFull)) return false;
+      if(!typeMatches(prefs.type, p.type)) return false;
+      if(Number(p.price) > maxBudget) return false;
+      if(!bhkMatches(prefs.bhk, p.bhk, p.type)) return false;
+      return true;
+    });
+  }
+
+  if(!all.length){
+    el.innerHTML = "<p style='color:#8b9dc3'>No properties match your filters. Try broadening your preferences (e.g. Location: Any, higher budget).</p>";
+    return;
+  }
+
+  el.innerHTML = all.map(p => {
+    const inWish = isInWishlist(p);
+    const heartClass = inWish ? "wishlist-btn filled" : "wishlist-btn";
+    const heartChar = inWish ? "♥" : "♡";
+    const img = (p.image||"").replace(/"/g, "&quot;");
+    const reraLabel = String(p.reraChecked || "yes").toLowerCase() === "yes" ? "RERA Checked" : "RERA Pending";
+    const possession = p.possessionStatus || "Ready";
+    return `
+    <div class="property-card" data-name="${(p.name||"").replace(/"/g, "&quot;")}" data-location="${(p.location||"").replace(/"/g, "&quot;")}" data-locationfull="${(p.locationFull||"").replace(/"/g, "&quot;")}" data-type="${(p.type||"").replace(/"/g, "&quot;")}" data-price="${p.price||0}" data-bhk="${(p.bhk||"").replace(/"/g, "&quot;")}" data-area="${(p.area||"").replace(/"/g, "&quot;")}" data-image="${img}" data-rera="${(p.reraChecked||"yes").replace(/"/g, "&quot;")}" data-possession="${(p.possessionStatus||"Ready").replace(/"/g, "&quot;")}" onclick="bookPropertyFromCard(this)">
+      <button class="${heartClass}" type="button" onclick="toggleWishlistFromCard(this, event)" title="${inWish ? "Remove from wishlist" : "Add to wishlist"}">${heartChar}</button>
+      <img src="${normalizeImageValue(p.image)}" alt="${escHtml(p.name)}" onerror="this.src='images/hero.jpeg';">
+      <div class="property-info">
+        <h3>${escHtml(p.name)}</h3>
+        <div class="property-location">📍 ${escHtml(p.locationFull || p.location)}</div>
+        <div class="property-badges">
+          <span class="badge badge-verified">Verified</span>
+          <span class="badge badge-rera">${reraLabel}</span>
+        </div>
+        <div class="property-price">${formatPrice(p.price)}</div>
+        <div class="property-details">
+          <span>${escHtml(p.bhk)}</span>
+          ${p.area ? `<span>${escHtml(p.area)}</span>` : ""}
+        </div>
+        <div class="property-keyfacts">
+          <div class="kf"><span class="kf-label">BHK</span><span class="kf-value">${escHtml(p.bhk || "N/A")}</span></div>
+          <div class="kf"><span class="kf-label">Area</span><span class="kf-value">${escHtml(p.area || "N/A")}</span></div>
+          <div class="kf"><span class="kf-label">Possession</span><span class="kf-value">${escHtml(possession)}</span></div>
+        </div>
+        <span class="property-type">${escHtml(p.type)}</span>
+        <button class="book-btn" type="button" onclick="event.stopPropagation(); bookPropertyFromCard(this.closest('.property-card'))">Book Now (₹2,000 Token)</button>
+        <div class="booking-note">Refundable token. Terms apply.</div>
+      </div>
+    </div>
+  `;
+  }).join("");
+}
+
+loadProfile();
+loadPreferences();
+loadWishlist();
+loadProperties();
+</script>
+
+</body>
+</html>

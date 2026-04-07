@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Builder Login | HomeAxis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<script>
+/* AUTO REDIRECT IF LOGGED IN */
+if (localStorage.getItem("builderLoggedIn") === "true") {
+  window.location.href = "builder-dashboard.html";
+}
+</script>
+
+<style>:root{
+  --bg:#f8f6f1;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card:#161616;
+  --text-light:#ffffff;
+  --text-muted:rgba(255,255,255,.6);
+  --border-soft:rgba(198,167,94,.18);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  font-family:Montserrat,sans-serif;
+  background:var(--bg);
+  color:#1c1c1c;
+}
+
+/* ===== LUXURY CARD ===== */
+.card{
+  width:min(460px,92%);
+  background:var(--card);
+  padding:2.6rem 2.4rem;
+  border-radius:22px;
+  border:1px solid var(--border-soft);
+  box-shadow:0 40px 90px rgba(0,0,0,.25);
+  color:var(--text-light);
+  transition:.35s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+  box-shadow:0 60px 110px rgba(0,0,0,.35);
+}
+
+/* ===== LOGO ===== */
+.logo{
+  text-align:center;
+  font-weight:900;
+  letter-spacing:.28em;
+  margin-bottom:1.8rem;
+  color:var(--gold-soft);
+}
+
+.logo span{
+  display:block;
+  font-size:.65rem;
+  color:var(--text-muted);
+  letter-spacing:.22em;
+  margin-top:.4rem;
+}
+
+/* ===== TITLE ===== */
+h2{
+  text-align:center;
+  font-size:1.1rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin-bottom:1.6rem;
+}
+
+/* ===== FORM ===== */
+form{
+  display:grid;
+  gap:1.2rem;
+}
+
+input{
+  padding:.9rem 1rem;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#111111;
+  color:#ffffff;
+  font-size:.9rem;
+  transition:.3s ease;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,.35);
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(198,167,94,.15);
+}
+
+/* ===== BUTTON ===== */
+button{
+  margin-top:.8rem;
+  padding:.95rem;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 35px rgba(198,167,94,.45);
+}
+
+/* ===== TOGGLE ===== */
+.toggle{
+  text-align:center;
+  margin-top:1.4rem;
+  font-size:.8rem;
+  color:var(--gold-soft);
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.toggle:hover{
+  color:var(--gold);
+}
+
+/* ===== ERROR ===== */
+.error{
+  display:none;
+  background:rgba(255,80,80,.12);
+  border:1px solid rgba(255,80,80,.35);
+  color:#ffbcbc;
+  padding:.7rem .9rem;
+  border-radius:12px;
+  font-size:.8rem;
+  text-align:center;
+}
+
+.back-btn{
+  position:fixed;
+  top:18px;
+  left:18px;
+  padding:.55rem 1rem;
+  border-radius:999px;
+  border:1px solid rgba(198,167,94,.45);
+  background:#111;
+  color:var(--gold-soft);
+  text-decoration:none;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<a class="back-btn" href="index.html">← Back</a>
+
+<div class="card">
+  <div class="logo">
+    HOMEAXIS
+    <span>Builder Portal</span>
+  </div>
+
+  <h2 id="formTitle">Builder Login</h2>
+  <div class="error" id="errorBox"></div>
+
+  <form id="authForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit" id="submitBtn">Login</button>
+  </form>
+
+  <div class="toggle" id="toggleForm">
+    New builder? Create an account
+  </div>
+</div>
+
+<script>
+let isSignup = false;
+
+const form = document.getElementById("authForm");
+const toggle = document.getElementById("toggleForm");
+const title = document.getElementById("formTitle");
+const button = document.getElementById("submitBtn");
+const errorBox = document.getElementById("errorBox");
+
+toggle.onclick = () => {
+  isSignup = !isSignup;
+  title.innerText = isSignup ? "Builder Signup" : "Builder Login";
+  button.innerText = isSignup ? "Sign Up" : "Login";
+  toggle.innerText = isSignup
+    ? "Already have an account? Login"
+    : "New builder? Create an account";
+};
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  errorBox.style.display = "none";
+
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value.trim();
+
+  if (password.length < 4) {
+    errorBox.innerText = "Password must be at least 4 characters";
+    errorBox.style.display = "block";
+    return;
+  }
+
+  let builders = JSON.parse(localStorage.getItem("builders") || "[]");
+
+  if (isSignup) {
+    if (builders.some(b => b.email === email)) {
+      errorBox.innerText = "Account already exists";
+      errorBox.style.display = "block";
+      return;
+    }
+    builders.push({ email, password });
+    localStorage.setItem("builders", JSON.stringify(builders));
+  } else {
+    const builder = builders.find(
+      b => b.email === email && b.password === password
+    );
+    if (!builder) {
+      errorBox.innerText = "Invalid email or password";
+      errorBox.style.display = "block";
+      return;
+    }
+  }
+
+  /* LOGIN SUCCESS */
+  localStorage.setItem("builderLoggedIn", "true");
+  localStorage.setItem("builderEmail", email);
+
+  window.location.href = "builder-dashboard.html";
+});
+</script>
+
+</body>
+</html>

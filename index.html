@@ -1,0 +1,3044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeAxis | Luxury Real Estate</title>
+<meta name="description" content="Explore verified luxury properties across India with HomeAxis. Compare premium homes, book site visits, and reserve with secure refundable token payments.">
+<meta property="og:title" content="HomeAxis | Luxury Real Estate">
+<meta property="og:description" content="Verified premium listings, legal support, and trusted booking flow for luxury homes and commercial spaces.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/hero.jpeg">
+<meta property="og:url" content="https://homeaxis.in/">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "HomeAxis",
+  "description": "Luxury residential and commercial real estate listings in India.",
+  "areaServed": "India",
+  "url": "https://homeaxis.in/",
+  "telephone": "+91-8454045796",
+  "email": "contact.homeaxis@gmail.com"
+}
+</script>
+<style>
+:root{
+  --bg:#f8f6f1;
+  --bg-alt:#ffffff;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --text-main:#1c1c1c;
+  --text-muted:#6b6b6b;
+  --border-soft:rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  margin:0;
+  font-family:Montserrat, sans-serif;
+  background:var(--bg);
+  color:var(--text-main);
+}
+
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* LAYOUT */
+.page{
+  min-height:100vh;
+  position:relative;
+  z-index:1;
+}
+.section{
+  padding:6rem 1.25rem;
+  position:relative;
+}
+
+.section.dark{
+  background:#111111;
+  color:#ffffff;
+}
+
+.section.alt{
+  background:#f3efe6; /* champagne */
+}
+
+.section.soft{
+  background:#ffffff;
+}
+.container{
+  max-width:1180px;
+  margin:0 auto;
+}
+.section-heading{
+  font-size:1rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  margin-bottom:.6rem;
+}
+.section-title{
+  font-size:2rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:1.2rem;
+}
+.section-sub{
+  max-width:540px;
+  color:var(--text-muted);
+  font-size:.95rem;
+}
+.section.soft .testimonial {
+  background: linear-gradient(
+    145deg,
+    #111111,
+    #1a1a1a
+  );
+  border: 1px solid rgba(198,167,94,.15);
+  box-shadow: 0 25px 50px rgba(0,0,0,.35);
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  transition: all .35s ease;
+}
+
+.section.soft .testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 70px rgba(0,0,0,.45);
+  border-color: var(--gold);
+}
+/* NAVBAR */
+header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:1000;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border-soft);
+}
+.nav{
+  max-width:1180px;
+  margin:0 auto;
+  padding:.85rem 1.25rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-weight:900;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-size:.8rem;
+}
+.logo span{
+  display:block;
+  font-weight:500;
+  font-size:.6rem;
+  letter-spacing:.18em;
+  color:var(--text-muted);
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+}
+.nav-links a{
+  color:var(--text-main);
+}
+.nav-links a:hover{
+  color:var(--gold-soft);
+}
+.nav-cta{
+  padding:.55rem 1.3rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#fff;
+  font-weight:700;
+  font-size:.75rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  border:none;
+  transition:all 0.3s ease;
+}
+.nav-cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(198,167,94,.45);
+}
+header.scrolled {
+  background: rgba(0,0,0,.98);
+  padding: .3rem 0;
+}
+body {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--gold-soft);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform .1s ease;
+}
+/* HERO */
+.hero{
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f3efe6 100%
+  );
+
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  padding: 8rem 1.25rem 4rem;
+  align-items: center;
+}
+.hero-media{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 40px 120px rgba(0,0,0,.5);
+}
+.hero-media::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.1) 45%,transparent 80%);
+}
+.hero-media img{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+}
+.hero-badge{
+  position:absolute;
+  left:1.4rem;
+  bottom:1.6rem;
+  padding:.55rem 1.2rem;
+  border-radius:999px;
+  background:rgba(0,0,0,.85);
+  border:1px solid rgba(198,167,94,.3);
+  color:var(--gold-soft);
+  font-size:.7rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
+
+.hero-copy{
+  max-width:440px;
+}
+.hero-video-badge {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: .6rem 1.6rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,.75);
+  border: 1px solid rgba(198,167,94,.35);
+  color: var(--gold-soft);
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.hero-eyebrow{
+  font-size:.8rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  margin-bottom:.9rem;
+}
+.hero-title{
+  font-family: 'Playfair Display', serif;
+  font-size:3rem;
+  letter-spacing:.04em;
+  text-transform:none;
+  font-weight:700;
+}
+.hero-title span{
+  display:block;
+  font-weight:500;
+  font-size:1rem;
+  letter-spacing:.26em;
+  margin-top:.35rem;
+}
+.hero-text{
+  margin-top:1.2rem;
+  color:var(--text-muted);
+  font-size:.95rem;
+}
+.hero-actions{
+  margin-top:1.8rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  align-items:center;
+}
+.hero-media-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers badge under video */
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.8rem 1.6rem;
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border-radius:999px;
+  border:1px solid transparent;
+  cursor:pointer;
+}
+.btn-primary{
+  background:linear-gradient(
+    135deg,
+    var(--gold),
+    var(--gold-soft)
+  );
+  color:#000;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(198,167,94,.4);
+}
+.btn-outline{
+  border-color:var(--border-soft);
+  color:var(--text-main);
+  background:transparent;
+}
+.hero-metric{
+  margin-top:1.3rem;
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  font-size:.8rem;
+  color:var(--text-muted);
+}
+.hero-metric strong{
+  font-size:1.4rem;
+  color:var(--gold-soft);
+}
+.hero-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+}
+/* Video always fits 16:9 without distortion */
+.hero-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* KEY CHANGE */
+  background: #000;
+}
+/* Overlay to keep text readable */
+.hero-video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.2),
+    rgba(0,0,0,.1)
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Play button */
+.hero-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.65);
+  border: 2px solid rgba(255,255,255,.35);
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+  transition: all .3s ease;
+}
+
+.hero-video.playing .hero-play {
+  display: none;
+}
+
+
+.hero-play:hover {
+  transform: scale(1.05);
+  background: rgba(198,167,94,.9);
+  border-color: var(--gold-soft);
+}
+/*logo*/
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo-img {
+  height: 36px;      /* perfect for navbar */
+  width: auto;
+}
+
+.logo-text {
+  font-weight: 900;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+
+.logo-text span {
+  display: block;
+  font-weight: 500;
+  font-size: .6rem;
+  letter-spacing: .18em;
+  color: var(--text-muted);
+}
+
+/* ABOUT / SPECIALIZATION */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:2.2rem;
+  align-items:start;
+}
+.about-left p{
+  color:var(--text-muted);
+  font-size:.95rem;
+  line-height:1.7;
+}
+.about-stats{
+  margin-top:2rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:1.5rem;
+}
+.about-stat{
+  min-width:160px;
+}
+.about-stat h3{
+  font-size:1.6rem;
+  margin-bottom:.1rem;
+  color:var(--gold-soft);
+}
+.about-stat span{
+  display:block;
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--text-muted);
+}
+.about-right{
+  background: linear-gradient(
+    145deg,
+    #141414,
+    #1a1a1a
+  );
+  border: 1px solid rgba(198,167,94,.2);
+  border-radius: 20px;
+  padding: 2.5rem 2.2rem;
+  box-shadow: 
+    0 40px 80px rgba(0,0,0,.65),
+    inset 0 0 0 1px rgba(198,167,94,.05);
+}
+.about-right h3{
+  font-size: .85rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.8rem;
+}
+.about-right ul{
+  list-style: none;
+  display: grid;
+  gap: 1.2rem;
+  font-size: .95rem;
+  color: #d6d6d6;
+  line-height: 1.6;
+}
+
+.about-right ul li{
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.about-right ul li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* WHY HIRE US */
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:2rem;
+  margin-top:3rem;
+}
+
+/* CARD */
+.why-card{
+  position:relative;
+  background:linear-gradient(
+    145deg,
+    #121212,
+    #1a1a1a
+  );
+  padding:2.5rem 2rem 2rem;
+  border-radius:18px;
+  border:1px solid rgba(198,167,94,.15);
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+  transition:all .4s ease;
+}
+
+.why-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 60px 100px rgba(0,0,0,.75);
+  border-color:var(--gold);
+}
+
+/* LARGE BACKGROUND NUMBER */
+.why-label{
+  position:absolute;
+  top:1.2rem;
+  right:1.6rem;
+  font-size:3.2rem;
+  font-family: 'Playfair Display', serif;
+  font-weight:800;
+  color: rgba(198,167,94,.18);  /* increased opacity */
+  pointer-events:none;
+}
+/* TITLE */
+.why-card h3{
+  color: #ffffff;   /* force white */
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  letter-spacing: .06em;
+}
+
+/* TEXT */
+.why-card p{
+  font-size: .95rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.6;
+}
+/* FILTERS */
+.filters{
+  margin-top:2rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  padding:1.8rem;
+  border-radius:18px;
+  background:#161616;
+  border:1px solid rgba(198,167,94,.15);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+.quick-filter-wrap{
+  position:sticky;
+  top:72px;
+  z-index:40;
+}
+.filters-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  margin-top:.8rem;
+}
+.results-count{
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+}
+.clear-btn{
+  border:1px solid rgba(198,167,94,.35);
+  background:transparent;
+  color:var(--gold-soft);
+  border-radius:999px;
+  padding:.55rem 1rem;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.clear-btn:hover{
+  background:rgba(198,167,94,.15);
+}
+.filter-toggle{
+  display:none;
+  margin-top:1rem;
+  border:1px solid rgba(198,167,94,.35);
+  background:transparent;
+  color:var(--gold-soft);
+  border-radius:999px;
+  padding:.55rem .95rem;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.filters select {
+  color: #ffffff;
+}
+.filters select {
+  appearance: none;
+  background-color: #111;
+  border: 1px solid rgba(198,167,94,.25);
+}
+.filters select option {
+  background: #111;
+  color: #ffffff;
+}
+.filter-group{
+  flex:1;
+  min-width:180px;
+}
+.section.dark .filter-group label {
+  color: rgba(255,255,255,.7);
+}
+
+.section.dark .filter-group select,
+.section.dark .filter-group input {
+  background: #111;
+  color: #ffffff;
+  border: 1px solid rgba(198,167,94,.25);
+}
+.section.dark .filter-group select option {
+  background: #111;
+  color: #fff;
+}
+.filter-group label{
+  display:block;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--text-muted);
+  margin-bottom:.5rem;
+}
+.filter-group select,
+.filter-group input {
+  width:100%;
+  padding:.8rem 1.2rem;
+  border-radius:999px;
+  border:1px solid rgba(198,167,94,.25);
+  background:#111;
+  color:#ffffff;  /* FORCE WHITE */
+  font-size:.85rem;
+  font-family:inherit;
+}
+.section.dark .filter-group select:focus,
+.section.dark .filter-group input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(198,167,94,.15);
+}
+header.scrolled {
+  background: rgba(10,10,10,.85);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0,0,0,.6);
+}
+/* PROPERTIES GRID */
+.properties-grid{
+  margin-top:2.4rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.6rem;
+}
+.property-card{
+  background:#161616;
+  border: 1px solid rgba(198,167,94,.15);
+  box-shadow: 0 40px 80px rgba(0,0,0,.6);
+   position: relative;
+  overflow: hidden;
+}
+.property-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(198,167,94,.15),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .8s ease;
+}
+
+.property-card:hover::after {
+  transform: translateX(100%);
+}
+.property-info h3{
+  color:#ffffff;
+}
+
+.property-location,
+.property-details{
+  color: rgba(255,255,255,.65);
+}
+.property-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 30px 80px rgba(198,167,94,.25);
+}
+.property-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+.property-info{
+  padding:1.4rem;
+}
+.property-badges{
+  display:flex;
+  gap:.45rem;
+  flex-wrap:wrap;
+  margin:.55rem 0 .75rem;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:.28rem .65rem;
+  font-size:.62rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.badge-verified{
+  background:rgba(60,200,120,.15);
+  color:#7cf2b1;
+  border:1px solid rgba(60,200,120,.35);
+}
+.badge-rera{
+  background:rgba(198,167,94,.16);
+  color:var(--gold-soft);
+  border:1px solid rgba(198,167,94,.35);
+}
+.property-location{
+  font-size:.85rem;
+  color:var(--text-muted);
+  margin-bottom:.8rem;
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+}
+.property-price{
+  font-size:1.45rem;
+  letter-spacing:.02em;
+  font-weight:700;
+  color:var(--gold-soft);
+  margin-bottom:.5rem;
+}
+.property-details{
+  display:flex;
+  gap:1rem;
+  font-size:.8rem;
+  color:var(--text-muted);
+  margin-top:.8rem;
+  padding-top:.8rem;
+  border-top:1px solid var(--border-soft);
+}
+.property-keyfacts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.65rem;
+  margin-top:.85rem;
+  margin-bottom:.75rem;
+}
+.kf{
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:.5rem .55rem;
+  background:rgba(255,255,255,.02);
+}
+.kf-label{
+  display:block;
+  font-size:.58rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.58);
+}
+.kf-value{
+  display:block;
+  margin-top:.18rem;
+  font-size:.72rem;
+  color:#fff;
+  font-weight:600;
+}
+.property-type{
+  display:inline-block;
+  padding:.3rem .7rem;
+  background:rgba(198,167,94,.15);
+  color:var(--gold-soft);
+  border-radius:6px;
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-top:.5rem;
+}
+.property-card img {
+  transition: transform .6s ease;
+}
+.property-card:hover img {
+  transform: scale(1.06);
+}
+
+/* PROJECTS */
+.projects-grid{
+  margin-top:2.4rem;
+  display:grid;
+  grid-template-columns:2fr 1.5fr;
+  gap:1.4rem;
+}
+.project-main,.project-side{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  background:#000;
+}
+.project-main img,
+.project-side img{
+  height:260px;
+  width:100%;
+  object-fit:cover;
+}
+.project-row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.4rem;
+}
+.project-tag{
+  position:absolute;
+  left:1.2rem;
+  bottom:1.1rem;
+  background:rgba(0,0,0,.85);
+  padding:.45rem 1rem;
+  border-radius:999px;
+  font-size:.7rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color: #ffffff;
+  border:1px solid rgba(198,167,94,.3);
+}
+
+/* CLIENTS */
+.clients-row{
+  margin-top:2.4rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:2.5rem;
+  align-items:center;
+  opacity:.8;
+}
+.clients-row span{
+  font-size:.8rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* TESTIMONIALS */
+.testimonials-grid{
+  margin-top:2.4rem;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.6rem;
+}
+.testimonial{
+  background:#161616;
+border:1px solid rgba(198,167,94,.15);
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+  padding:2rem;
+  border-radius:18px;
+}
+.testimonial:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(198,167,94,.15);
+}
+.clients-row {
+  margin-top:3rem;
+  margin-bottom:3rem;
+}
+.section.soft .testimonial p {
+  font-size: .95rem;
+  font-style: italic;
+  color: rgba(255,255,255,.85);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.section.soft .testimonial span {
+  font-size: .75rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+.testimonial span{
+  font-size:.8rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.property-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.property-card.card-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-copy {
+  animation: floatUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONTACT / FOOTER */
+.contact-grid{
+  margin-top:2.4rem;
+  display:grid;
+  grid-template-columns:1.4fr 1.1fr;
+  gap:2rem;
+}
+.contact-info{
+  display:grid;
+  gap:1rem;
+  font-size:.9rem;
+  color:var(--text-muted);
+}
+.contact-info strong{
+  display:block;
+  font-size:.8rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  margin-bottom:.25rem;
+}
+.contact-card{
+  background:#161616;
+border:1px solid rgba(198,167,94,.15);
+box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+.contact-card h3{
+  font-size:1rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:1.1rem;
+}
+.visit-form-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+}
+.visit-form-close{
+  width:30px;
+  height:30px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  cursor:pointer;
+  font-size:1rem;
+  line-height:1;
+}
+.contact-form{
+  display:grid;
+  gap:.8rem;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: #111;           /* solid dark */
+  color: #ffffff;             /* WHITE TEXT */
+  font-family: Montserrat, sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+/* Placeholder color */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255,255,255,.5);
+}
+
+/* Focus style */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #c6a75e;
+  box-shadow: 0 0 0 2px rgba(198,167,94,.25);
+}
+.contact-form textarea{
+  min-height:110px;
+  resize:vertical;
+}
+.contact-form button{
+  margin-top:.4rem;
+  border:none;
+  cursor:pointer;
+}
+.contact-form select {
+  appearance: none;
+  background: #111;
+  color: #fff;
+}
+footer{
+  padding:1.6rem 1.25rem 2.4rem;
+  background:#000000;
+  border-top:1px solid rgba(255,255,255,.08);
+  font-size:.8rem;
+  color:var(--text-muted);
+  text-align:center;
+}
+footer a{
+  color:var(--gold-soft);
+  margin:0 .5rem;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+footer strong{
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-size:.7rem;
+}
+.legal-trust{
+  margin-top:.75rem;
+  font-size:.72rem;
+  color:rgba(255,255,255,.62);
+  max-width:780px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.6;
+}
+/* ===== BOOK NOW BUTTON ===== */
+.book-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+
+  border: none;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+   var(--gold),
+    var(--gold-soft)
+  );
+
+  color: #ffffff;
+  font-family: Montserrat, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.booking-note{
+  margin-top:.45rem;
+  font-size:.68rem;
+  color:rgba(255,255,255,.62);
+  letter-spacing:.04em;
+}
+.trust-strip{
+  background:#101010;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.trust-strip .container{
+  padding:1.3rem 1.25rem;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1rem;
+}
+.trust-pill{
+  text-align:center;
+  color:#fff;
+  font-size:.8rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+/* Hover effect */
+.book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(198,167,94,.45);
+}
+
+.book-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(198,167,94,.35);
+}
+
+/* Focus (keyboard accessibility) */
+.book-btn:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(198,167,94,0.35),
+    0 10px 28px rgba(198,167,94,0.45);
+}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:5.4rem;
+  }
+  .hero-media img{height:320px}
+  .about-grid,
+  .projects-grid,
+  .testimonials-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width:720px){
+  .nav-links{
+    display:none;
+  }
+  .hero-title{
+    font-size:2.2rem;
+  }
+  .why-grid{
+    grid-template-columns:1fr;
+  }
+  .clients-row{
+    gap:1.2rem;
+  }
+  .properties-grid{
+    grid-template-columns:1fr;
+  }
+  .filters{
+    flex-direction:column;
+  }
+  .quick-filter-wrap{
+    top:60px;
+  }
+  .filter-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .quick-filter-wrap.collapsed .filters{
+    display:none;
+  }
+  .quick-filter-wrap.collapsed .filters-toolbar{
+    display:none;
+  }
+  .filters-toolbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .trust-strip .container{
+    grid-template-columns:1fr 1fr;
+  }
+  .filter-group{
+    width:100%;
+  }
+  .property-info{
+    padding:1.1rem;
+  }
+  .property-card .book-btn,
+  .property-card .emi-btn{
+    min-height:44px;
+  }
+  .property-keyfacts{
+    grid-template-columns:1fr;
+  }
+}
+.view-toggle {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.view-toggle button {
+  padding: .5rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(198,167,94,.3);
+  background: transparent;
+  color: var(--gold-soft);
+  cursor: pointer;
+}
+
+.list-view .properties-grid {
+  display: block;
+}
+
+.list-view .property-card {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.list-view .property-card img {
+  width: 320px;
+  height: 200px;
+}
+/* ===== PROJECT STORY MODE ===== */
+
+.story-section {
+  overflow: hidden;
+}
+
+.story-wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.story-step {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  padding: 3rem 1.25rem;
+}
+
+.story-step.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-media img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 40px 90px rgba(0,0,0,.85);
+}
+
+.story-content {
+  max-width: 420px;
+}
+
+.story-label {
+  display: inline-block;
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: .8rem;
+}
+
+.story-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.story-content p {
+  font-size: .95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.story-content ul {
+  list-style: none;
+  display: grid;
+  gap: .6rem;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+.story-content ul li::before {
+  content: "— ";
+  color: var(--gold-soft);
+}
+
+@media (max-width: 900px) {
+  .story-step {
+    grid-template-columns: 1fr;
+  }
+  .story-media img {
+    height: 300px;
+  }
+}.story-step.active .story-media img {
+  transform: scale(1.03);
+  transition: transform 1s ease;
+}
+
+/* ===== CONTACT FORM FIX ===== */
+
+.contact-card {
+  background:#161616;
+  border:1px solid rgba(198,167,94,.15);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+  border-radius: 18px;
+  padding: 2rem 1.8rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.6);
+ color: #ffffff;
+  font-family: Montserrat, sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255,255,255,.45);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--gold-soft);
+  background: rgba(0,0,0,.75);
+  box-shadow: 0 0 0 2px rgba(198,167,94,.15);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button {
+  margin-top: 0.6rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(198,167,94,.45);
+}
+
+/* Success message */
+#visitSuccess {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: var(--gold-soft);
+}
+/* ===== NAVBAR TEXT COLOR FIX ===== */
+
+.nav-links a {
+  color: #000;
+  transition: color .3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+header.scrolled .nav-links a {
+  color: #ffffff;
+}
+
+header.scrolled .nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-links a.active {
+  color: var(--gold-soft);
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold-soft);
+  border-radius: 2px;
+}
+.story-step:nth-child(even) {
+  grid-template-columns: 1fr 1.3fr;
+}
+.story-step:nth-child(even) .story-media {
+  order: 2;
+}
+.cursor-trail {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--gold-soft);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: .6;
+  animation: fadeTrail .5s forwards;
+}
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader-logo {
+  color: var(--gold-soft);
+  letter-spacing: .4em;
+  font-size: 1.2rem;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: .4; }
+  50% { opacity: 1; }
+  100% { opacity: .4; }
+}
+@keyframes fadeTrail {
+  to { opacity: 0; transform: scale(2); }
+}
+.theme-btn {
+  background: transparent;
+  border: 1px solid rgba(198,167,94,.3);
+  color: var(--gold-soft);
+  padding: .4rem .8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: .8rem;
+  transition: all .3s ease;
+}
+
+.theme-btn:hover {
+  background: rgba(198,167,94,.15);
+}
+
+/* Night Mode */
+body.night-mode {
+  background: #0a0a0a;
+}
+
+body.night-mode .section.soft {
+  background: #121212;
+}
+
+body.night-mode .property-card {
+  background: #1a1a1a;
+}
+/* ===== EMI MODAL FIXED ===== */
+
+.emi-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+}
+
+.emi-content {
+  background: #111111;
+  padding: 2.5rem 2rem;
+  border-radius: 18px;
+  width: 380px;
+  border: 1px solid rgba(198,167,94,.25);
+  box-shadow: 0 40px 100px rgba(0,0,0,.8);
+  text-align: center;
+}
+
+.emi-content h3 {
+  color: var(--gold-soft);
+  margin-bottom: 1.5rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .95rem;
+}
+
+.emi-content input {
+  width: 100%;
+  padding: .9rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(198,167,94,.25);
+  background: #0d0d0d;
+  color: #ffffff !important;
+  font-family: Montserrat, sans-serif;
+  font-size: .9rem;
+}
+
+.emi-content input:focus {
+  outline: none;
+  border-color: var(--gold-soft);
+  box-shadow: 0 0 0 2px rgba(198,167,94,.15);
+}
+
+.emi-content button {
+  width: 100%;
+  padding: .8rem;
+  margin-top: .5rem;
+  border-radius: 999px;
+  border: none;
+  font-size: .75rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+/* Calculate button */
+.emi-content button:first-of-type {
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: #000;
+}
+
+.emi-content button:first-of-type:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(198,167,94,.4);
+}
+
+/* Close button */
+.emi-content button:last-of-type {
+  background: transparent;
+  border: 1px solid rgba(198,167,94,.3);
+  color: var(--gold-soft);
+}
+
+.emi-content button:last-of-type:hover {
+  background: rgba(198,167,94,.15);
+}
+
+#emiResult {
+  margin-top: 1rem;
+  font-size: .95rem;
+  color: var(--gold-soft);
+}
+/* ===== FORCE EMI BUTTON STYLE ===== */
+.property-card .property-info .emi-btn {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  margin-top: .6rem;
+  width: 100%;
+
+  padding: .8rem 1rem;
+
+  border-radius: 999px !important;
+  border: 1px solid rgba(198,167,94,.3) !important;
+
+  background: transparent !important;
+  color: var(--gold-soft) !important;
+
+  font-family: Montserrat, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.property-card .property-info .emi-btn:hover {
+  background: rgba(198,167,94,.15) !important;
+  transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body class="page">
+<div id="loader">
+  <div class="loader-logo">HOMEAXIS</div>
+</div>
+<header>
+  <div class="nav">
+   <div class="logo">
+  <img src="images/admin.png" alt="HomeAxis Logo" class="logo-img">
+  <div class="logo-text">
+    <span>Real Estate &amp; Developments</span>
+  </div>
+</div>
+    <nav class="nav-links">
+  <a href="#about">About</a>
+  <a href="#buy">Buy</a>
+  <a href="#rent">Rent</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+  <a href="#visit" class="nav-cta">Book Visit</a>
+
+</nav>
+<button id="themeToggle" class="theme-btn">🌙</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<main>
+  <section class="hero">
+  <div class="hero-media-wrapper">
+
+  <div class="hero-media hero-video">
+    <video id="heroVideo" controls preload="metadata" poster="images/hero.jpeg">
+      <source src="images/hero.mp4" type="video/mp4">
+    </video>
+
+    <button class="hero-play" onclick="playHeroVideo()">▶ Play Video</button>
+  </div>
+
+  <!-- Badge BELOW video but SAME column -->
+  <div class="hero-video-badge">
+    PREMIUM INDIAN PROPERTIES · CURATED BY HOMEAXIS
+  </div>
+
+</div>
+
+    <div class="hero-copy">
+      <div class="hero-eyebrow">We Create Luxury Living</div>
+      <h1 class="hero-title">
+        Signature Homes
+        <span>For Those Who Invest In Legacy</span>
+      </h1>
+      <p class="hero-text">
+        Premium residences and commercial spaces crafted with architectural precision, thoughtful detailing and a focus on long‑term value.
+      </p>
+      <div class="hero-actions">
+        <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
+        <a href="#visit" class="btn btn-outline">Schedule Site Visit</a>
+      </div>
+      <div class="hero-metric">
+        <div>
+          <strong>8+</strong><br>Years of successful delivery
+        </div>
+        <div>1000+ clients across premium residential &amp; commercial developments.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section dark">
+    <div class="container about-grid">
+      <div class="about-left">
+        <div class="section-heading">About HomeAxis</div>
+        <h2 class="section-title">Creating ideas into work of art</h2>
+        <p>
+          HomeAxis is a boutique real estate brand focused on timeless architecture and meticulous planning.
+          From high‑rise residences to curated villas and commercial addresses, every project is designed
+          to feel intimate, elevated and enduring.
+        </p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <h3>25+</h3>
+            <span>Delivered projects</span>
+          </div>
+          <div class="about-stat">
+            <h3>1M+</h3>
+            <span>Sq.ft. under management</span>
+          </div>
+        </div>
+      </div>
+      <aside class="about-right">
+        <h3>Our Specialization</h3>
+        <ul>
+          <li>Luxury residential towers &amp; premium gated communities</li>
+          <li>High‑yield commercial and retail spaces in prime corridors</li>
+          <li>Thoughtfully planned amenities that elevate daily living</li>
+          <li>End‑to‑end support from selection to handover &amp; beyond</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- WHY HIRE US -->
+  <section id="why" class="section soft">
+    <div class="container">
+      <div class="section-heading">Why Hire Us</div>
+      <h2 class="section-title">Built on trust. Driven by detail.</h2>
+      <p class="section-sub">
+        A focused team, clear legal processes and deep market understanding help us deliver projects
+        that perform in the long run — for both end users and investors.
+      </p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-label">01</div>
+          <h3>Proven track record</h3>
+          <p>On‑time delivery across multiple residential and commercial projects in prime micro‑markets.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-label">02</div>
+          <h3>Tailored guidance</h3>
+          <p>Personalized consultations to match your requirements, from first home to portfolio investments.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-label">03</div>
+          <h3>Clear documentation</h3>
+          <p>Transparent processes and legally vetted titles for complete peace of mind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY PROPERTIES -->
+  <section id="buy" class="section dark">
+    <div class="container">
+      <div class="section-heading">Properties for Sale</div>
+      <h2 class="section-title">Find Your Dream Home</h2>
+      <p class="section-sub">
+        Explore premium residential and commercial properties across India's most sought-after locations.
+      </p>
+
+      <button type="button" class="filter-toggle" onclick="toggleFilterPanel('buyFiltersWrap', this)">Hide Filters</button>
+      <div class="quick-filter-wrap" id="buyFiltersWrap">
+      <button type="button" class="filter-toggle" onclick="toggleFilterPanel('rentFiltersWrap', this)">Hide Filters</button>
+      <div class="quick-filter-wrap" id="rentFiltersWrap">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Location</label>
+          <select id="filterLocation">
+            <option value="">All Locations</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+            <option>Bangalore</option>
+            <option>Hyderabad</option>
+            <option>Chennai</option>
+            <option>Pune</option>
+            <option>Kolkata</option>
+            <option>Ahmedabad</option>
+            <option>Jaipur</option>
+            <option>Gurgaon</option>
+            <option>Noida</option>
+            <option>Goa</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Price Range</label>
+          <select id="filterPrice">
+            <option value="">All Prices</option>
+            <option value="0-50">Under ₹50 Lakhs</option>
+            <option value="50-100">₹50 Lakhs - ₹1 Crore</option>
+            <option value="100-200">₹1 Cr - ₹2 Cr</option>
+            <option value="200-500">₹2 Cr - ₹5 Cr</option>
+            <option value="500-999">₹5 Cr - ₹10 Cr</option>
+            <option value="1000+">Above ₹10 Cr</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select id="filterType">
+            <option value="">All Types</option>
+            <option>Apartment</option>
+            <option>Villa</option>
+            <option>Commercial</option>
+            <option>Plot</option>
+            <option>Mansion</option>
+          </select>
+        </div>
+      </div>
+      <div class="filters-toolbar">
+        <div id="buyResults" class="results-count">0 results found</div>
+        <button type="button" class="clear-btn" onclick="clearBuyFilters()">Clear Filters</button>
+      </div>
+      </div>
+<div class="view-toggle">
+  <button onclick="setGrid()">Grid</button>
+  <button onclick="setList()">List</button>
+</div>
+
+<div class="properties-grid" id="buyProperties">
+  <div class="property-card" data-location="Mumbai" data-price="160" data-type="Villa">
+    <img src="images/signaturevillas.jpg" alt="Signature Villas">
+    <div class="property-info">
+      <h3>Signature Villas</h3>
+      <div class="property-location">📍 Mumbai, Maharashtra</div>
+      <div class="property-price">₹1.6 Cr onwards</div>
+      <div class="property-details">
+        <span>3-4 BHK</span>
+        <span>2500-3500 sq.ft</span>
+      </div>
+      <span class="property-type">Villa</span>
+\
+      <!-- STOP LINK FOR BUTTONS -->
+      <button class="book-btn"
+        onclick="event.preventDefault(); bookProperty('Signature Villas', 2000)">
+        Book Now (₹2,000 Token)
+      </button>
+      <button class="emi-btn"
+        onclick="event.preventDefault(); openEMI(16000000)">
+        Calculate EMI
+      </button>
+    </div>
+  </div>
+
+        <div class="property-card" data-location="Bangalore" data-price="85" data-type="Apartment">
+          <img src="images/The Rise.jpeg"
+     alt="The Rise – Luxury Apartments"
+     onerror="this.src='images/hero.jpeg';">
+
+          <div class="property-info">
+            <h3>Skyline Residences</h3>
+            <div class="property-location">📍 Bangalore, Karnataka</div>
+            <div class="property-price">₹85 Lakhs onwards</div>
+            <div class="property-details">
+              <span>2-3 BHK</span>
+              <span>1200-1800 sq.ft</span>
+            </div>
+            <span class="property-type">Apartment</span>
+            <button class="book-btn" onclick="bookProperty('Skyline Residences', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(8500000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Delhi" data-price="45" data-type="Commercial">
+<img src="images/a 25.jpeg"
+     alt="Business Suites – Commercial Spaces"
+     onerror="this.src='images/hero.jpeg';">
+          <div class="property-info">
+            <h3>Business Suites</h3>
+            <div class="property-location">📍 Delhi, NCR</div>
+            <div class="property-price">₹45 Lakhs onwards</div>
+            <div class="property-details">
+              <span>Office Space</span>
+              <span>800-1500 sq.ft</span>
+            </div>
+            <span class="property-type">Commercial</span>
+            <button class="book-btn" onclick="bookProperty('Business suites', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(4500000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Hyderabad" data-price="120" data-type="Apartment">
+           <img src="images/grandeurheights.jpeg" alt="Grandeur Heights">
+          <div class="property-info">
+            <h3>Grandeur Heights</h3>
+            <div class="property-location">📍 Hyderabad, Telangana</div>
+            <div class="property-price">₹1.2 Cr onwards</div>
+            <div class="property-details">
+              <span>3-4 BHK</span>
+              <span>1800-2400 sq.ft</span>
+            </div>
+            <span class="property-type">Apartment</span>
+            <button class="book-btn" onclick="bookProperty('Grandeur Heights', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(12000000)">
+  Calculate EMI
+</button>
+
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Pune" data-price="95" data-type="Villa">
+          <img src="images/serenityvilla.jpeg" alt="Serenity Villa">
+          <div class="property-info">
+            <h3>Serenity Villas</h3>
+            <div class="property-location">📍Alibaug, Maharashtra</div>
+            <div class="property-price">₹95 Lakhs onwards</div>
+            <div class="property-details">
+              <span>3 BHK</span>
+              <span>2200 sq.ft</span>
+            </div>
+            <span class="property-type">Villa</span>
+            <button class="book-btn" onclick="bookProperty('Serenity Villas', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(9500000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Chennai" data-price="75" data-type="Apartment">
+          <img src="images/coastal.jpeg"
+     alt="Coastal Residences – Luxury Apartments"
+     loading="lazy"
+     onerror="this.src='images/hero.jpeg';">
+          <div class="property-info">
+            <h3>Coastal Residences</h3>
+            <div class="property-location">📍 Chennai, Tamil Nadu</div>
+            <div class="property-price">₹75 Lakhs onwards</div>
+            <div class="property-details">
+              <span>2-3 BHK</span>
+              <span>1400-1900 sq.ft</span>
+            </div>
+            <span class="property-type">Apartment</span>
+            <button class="book-btn" onclick="bookProperty('Coastal Residences', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(7500000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Gurgaon" data-price="180" data-type="Apartment">
+          <img src="images/lodha.jpeg"
+     alt="Elite Towers – Luxury High-Rise Apartments"
+     loading="lazy"
+     onerror="this.src='images/hero.jpeg';">
+<div class="property-info">
+            <h3>Elite Towers</h3>
+            <div class="property-location">📍 Gurgaon, Haryana</div>
+            <div class="property-price">₹1.8 Cr onwards</div>
+            <div class="property-details">
+              <span>3-4 BHK</span>
+              <span>2000-2800 sq.ft</span>
+            </div>
+            <span class="property-type">Apartment</span>
+            <button class="book-btn" onclick="bookProperty('Elite towers', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(18000000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Goa" data-price="250" data-type="Villa">
+          <img src="images/Waterfront villa with sliding glass doors.jpeg" alt="Beachfront Villa">
+          <div class="property-info">
+            <h3>Beachfront Villas</h3>
+            <div class="property-location">📍 Goa</div>
+            <div class="property-price">₹2.5 Cr onwards</div>
+            <div class="property-details">
+              <span>4-5 BHK</span>
+              <span>3500-4500 sq.ft</span>
+            </div>
+            <span class="property-type">Villa</span>
+            <button class="book-btn" onclick="bookProperty('Beachfront Villas', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(25000000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Noida" data-price="60" data-type="Commercial">
+          <img src="images/download (9).jpeg" alt="Tech Front Office">
+          <div class="property-info">
+            <h3>Tech Park Offices</h3>
+            <div class="property-location">📍 Noida, Uttar Pradesh</div>
+            <div class="property-price">₹60 Lakhs onwards</div>
+            <div class="property-details">
+              <span>Office Space</span>
+              <span>1000-2000 sq.ft</span>
+            </div>
+            <span class="property-type">Commercial</span>
+            <button class="book-btn" onclick="bookProperty('Tech Park Office', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(6000000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Jaipur" data-price="55" data-type="Plot">
+          <img src="images/Faire le plein d'inspiration pour vos décorations !.jpeg" alt="Heritage Home-A Royal Touch">
+          <div class="property-info">
+            <h3>Heritage Home</h3>
+            <div class="property-location">📍 Jodhpur, Rajasthan</div>
+            <div class="property-price">₹55 Lakhs onwards</div>
+            <div class="property-details">
+              <span>Residential Plot</span>
+              <span>1200-2000 sq.yd</span>
+            </div>
+            <span class="property-type">Plot</span>
+            <button class="book-btn" onclick="bookProperty('Residential Plot', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(5500000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Surat" data-price="70" data-type="Mansion">
+          <img src="images/Gemini_Generated_Image_83oipv83oipv83oi.png" alt="Riverside Mansion-A Royal Touch with serenity">
+          <div class="property-info">
+            <h3>Riverside Mansion</h3>
+            <div class="property-location">📍 Surat,Gujarat</div>
+            <div class="property-price">₹5 Crore onwards</div>
+            <div class="property-details">
+              <span>5 BHK</span>
+              <span>13000-17000 sq.ft</span>
+            </div>
+            <span class="property-type">Mansion</span>
+            <button class="book-btn" onclick="bookProperty('Riverside Mansion', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(50000000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Ahmedabad" data-price="80" data-type="Villa">
+          <img src="images/gujrati villa.png" alt="Gujarati Villa-A Luxury Touch with Royalty">
+          <div class="property-info">
+            <h3>Gujarat Heritage Villas</h3>
+            <div class="property-location">📍 Ahmedabad, Gujarat</div>
+            <div class="property-price">₹10 Crore onwards</div>
+            <div class="property-details">
+              <span>10 BHK</span>
+              <span>20000 sq.ft</span>
+            </div>
+            <span class="property-type">Villa</span>
+            <button class="book-btn" onclick="bookProperty('Gujarat Heritage Villas', 2000)">
+  Book Now (₹2,000 Token)
+</button>
+<button class="emi-btn" onclick="openEMI(100000000)">
+  Calculate EMI
+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RENT PROPERTIES -->
+  <section id="rent" class="section soft">
+    <div class="container">
+      <div class="section-heading">Properties for Rent</div>
+      <h2 class="section-title">Premium Rental Properties</h2>
+      <p class="section-sub">
+        Discover fully furnished and semi-furnished rental properties in prime locations across India.
+      </p>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label>Location</label>
+          <select id="filterLocationRent">
+            <option value="">All Locations</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+            <option>Bangalore</option>
+            <option>Hyderabad</option>
+            <option>Chennai</option>
+            <option>Pune</option>
+            <option>Kolkata</option>
+            <option>Ahmedabad</option>
+            <option>Jaipur</option>
+            <option>Gurgaon</option>
+            <option>Noida</option>
+            <option>Goa</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Monthly Rent</label>
+          <select id="filterRentPrice">
+            <option value="">All Prices</option>
+            <option value="0-30">Under ₹30,000</option>
+            <option value="30-50">₹30K - ₹50K</option>
+            <option value="50-80">₹50K - ₹80K</option>
+            <option value="80-120">₹80K - ₹1.2 Lakhs</option>
+            <option value="120-200">₹1.2L - ₹2L</option>
+            <option value="200+">Above ₹2 Lakhs</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select id="filterTypeRent">
+            <option value="">All Types</option>
+            <option>Apartment</option>
+            <option>Villa</option>
+            <option>Commercial</option>
+            <option>Mansion</option>
+          </select>
+        </div>
+      </div>
+      <div class="filters-toolbar">
+        <div id="rentResults" class="results-count">0 results found</div>
+        <button type="button" class="clear-btn" onclick="clearRentFilters()">Clear Filters</button>
+      </div>
+      </div>
+
+      <div class="properties-grid" id="rentProperties">
+        <div class="property-card" data-location="Mumbai" data-rent="120" data-type="Apartment">
+          <img src="images/3bhk.png" alt="Fully furnished 3BHK">
+          <div class="property-info">
+            <h3>Fully Furnished 3BHK</h3>
+            <div class="property-location">📍 Mumbai, Maharashtra</div>
+            <div class="property-price">₹1.2 Lakhs/month</div>
+            <div class="property-details">
+              <span>3 BHK</span>
+              <span>1800 sq.ft</span>
+              <span>Furnished</span>
+            </div>
+            <span class="property-type">Apartment</span>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Bangalore" data-rent="65" data-type="Apartment">
+          <img src="images/royal.png" alt="Premium 2BHk Apartment">
+          <div class="property-info">
+            <h3>Premium 2BHK Apartment</h3>
+            <div class="property-location">📍 Bangalore, Karnataka</div>
+            <div class="property-price">₹65,000/month</div>
+            <div class="property-details">
+              <span>2 BHK</span>
+              <span>1400 sq.ft</span>
+              <span>Semi-Furnished</span>
+            </div>
+            <span class="property-type">Apartment</span>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Delhi" data-rent="90" data-type="Apartment">
+          <img src="images/2bhk.png" alt="Premium 3BHk Apartment">
+          <div class="property-info">
+            <h3>Spacious 3BHK</h3>
+            <div class="property-location">📍 Delhi, NCR</div>
+            <div class="property-price">₹90,000/month</div>
+            <div class="property-details">
+              <span>3 BHK</span>
+              <span>1600 sq.ft</span>
+              <span>Furnished</span>
+            </div>
+            <span class="property-type">Apartment</span>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Hyderabad" data-rent="45" data-type="Apartment">
+          <img src="images/cozy.png" alt=" Cozy 2BHk Apartment">
+          <div class="property-info">
+            <h3>Cozy 2BHK</h3>
+            <div class="property-location">📍 Hyderabad, Telangana</div>
+            <div class="property-price">₹45,000/month</div>
+            <div class="property-details">
+              <span>2 BHK</span>
+              <span>1200 sq.ft</span>
+              <span>Semi-Furnished</span>
+            </div>
+            <span class="property-type">Apartment</span>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Pune" data-rent="55" data-type="Apartment">
+          <img src="images/pune.png" alt="Modern 2bhk Apartment">
+          <div class="property-info">
+            <h3>Modern 2BHK</h3>
+            <div class="property-location">📍 Pune, Maharashtra</div>
+            <div class="property-price">₹55,000/month</div>
+            <div class="property-details">
+              <span>2 BHK</span>
+              <span>1300 sq.ft</span>
+              <span>Furnished</span>
+            </div>
+            <span class="property-type">Apartment</span>
+          </div>
+        </div>
+
+        <div class="property-card" data-location="Delhi" data-rent="150" data-type="Villa">
+          <img src="images/delhi.png" alt="Modern Villa">
+          <div class="property-info">
+            <h3>Luxury Villa</h3>
+            <div class="property-location">📍New Delhi,Delhi</div>
+            <div class="property-price">₹2.5 Lakhs/month</div>
+            <div class="property-details">
+              <span>4 BHK</span>
+              <span>3000 sq.ft</span>
+              <span>Fully Furnished</span>
+            </div>
+            <span class="property-type">Villa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT STORY MODE -->
+   <section id="projects" class="section dark story-section">
+
+  <!-- HEADING -->
+  <div class="container" style="margin-bottom:3rem;">
+    <div class="section-heading">Our Projects</div>
+    <h2 class="section-title">Projects we are proud of</h2>
+    <p class="section-sub">
+      A curated portfolio of residential and commercial spaces crafted with
+      architectural intent, long-term value, and timeless design.
+    </p>
+  </div>
+<div class="story-section">
+
+    <!-- STORY 1 -->
+    <div class="story-step">
+      <div class="story-media">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=900&fit=crop&auto=format" alt="Signature Villas">
+      </div>
+      <div class="story-content">
+        <span class="story-label">Flagship Residential</span>
+        <h2>Signature Villas</h2>
+        <p>
+          Private gated villas designed for families who value space, privacy,
+          and timeless architecture.
+        </p>
+        <ul>
+          <li>Limited inventory luxury homes</li>
+          <li>Landmark residential enclave</li>
+          <li>₹1.6 Cr onwards</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-step">
+      <div class="story-media">
+<img src="images/The Rise.jpeg"
+     alt="The Rise – Luxury Apartments"
+     onerror="this.src='images/hero.jpeg';">
+      </div>
+      <div class="story-content">
+        <span class="story-label">Urban Luxury Living</span>
+        <h2>Skyline Residences</h2>
+        <p>
+          Elevated city living with curated amenities, seamless connectivity,
+          and refined interiors.
+        </p>
+        <ul>
+          <li>2 & 3 BHK premium apartments</li>
+          <li>High-rise lifestyle amenities</li>
+          <li>Prime city micro-market</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-step">
+      <div class="story-media">
+<img src="images/a 25.jpeg"
+     alt="Business Suites – Commercial Spaces"
+     onerror="this.src='images/hero.jpeg';">
+      </div>
+      <div class="story-content">
+        <span class="story-label">Commercial Investment</span>
+        <h2>Business Suites</h2>
+        <p>
+          Strategically located commercial spaces designed to deliver
+          long-term rental yield and capital appreciation.
+        </p>
+        <ul>
+          <li>Grade-A office infrastructure</li>
+          <li>High tenant demand corridors</li>
+          <li>Strong ROI potential</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+  <!-- TESTIMONIALS / CLIENTS -->
+  <section id="testimonials" class="section soft">
+    <div class="container">
+      <div class="section-heading">Our Clients</div>
+      <h2 class="section-title">Trusted by discerning buyers</h2>
+      <p class="section-sub">
+        From first‑time homeowners to seasoned investors, our clients choose HomeAxis for clarity, commitment
+        and consistent delivery.
+      </p>
+
+      <div class="clients-row">
+        <span>Brands &amp; partners</span>
+        <span>• Premium Interior Studios</span>
+        <span>• Leading Financial Advisors</span>
+        <span>• Legal &amp; Compliance Partners</span>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>
+            "The entire experience — from walkthrough to handover — felt curated. The team was transparent at every stage
+            and the finished apartment exceeded our expectations."
+          </p>
+          <span>Home buyer · 3 BHK residence</span>
+        </div>
+        <div class="testimonial">
+          <p>
+            "We were looking for a long‑term commercial investment. HomeAxis helped us identify a property with strong
+            rental demand and guided us through a seamless acquisition."
+          </p>
+          <span>Investor · Commercial space</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / SITE VISIT -->
+  <section id="contact" class="section dark">
+    <div class="container contact-grid">
+      <div>
+        <div class="section-heading">Get In Touch</div>
+        <h2 class="section-title">Plan your site visit</h2>
+        <p class="section-sub">
+          Share a few details and our team will connect with you to schedule a personalized walkthrough of
+          our ongoing and ready‑to‑move projects.
+        </p>
+        <div class="contact-info">
+          <div>
+            <strong>Phone</strong>
+            +91 8454045796<br>
+            +91 8369484716<br>
+            +91 7710841257
+          </div>
+          <div>
+            <div>
+  <strong>Email</strong>
+            <a href="mailto:contact.homeaxis@gmail.com
+?subject=Site%20Visit%20Enquiry
+&body=Hello%20HomeAxis%2C%0A%0AI%20would%20like%20to%20schedule%20a%20site%20visit.%0A%0AThank%20you."
+   style="color:var(--gold-soft);">
+  contact.homeaxis@gmail.com
+</a>
+</div>
+          </div>
+          <div>
+            <strong>Visit slots</strong>
+            Monday – Sunday · 10:00 AM to 7:00 PM
+          </div>
+        </div>
+      </div>
+
+      <aside id="visit" class="contact-card">
+        <div class="visit-form-header">
+          <h3>Book a site visit</h3>
+          <button type="button" class="visit-form-close" onclick="closeVisitForm()" aria-label="Close form">×</button>
+        </div>
+        <form class="contact-form"
+      method="POST"
+      action="https://script.google.com/macros/s/AKfycbzH-f5OTdsMh7-s1e1MYuZJWsW2pyCCAUoX37xxmXys2PhrAcGmcGiaXoR5PBy9ghTc/exec"
+      target="hidden_iframe"
+      onsubmit="showSuccess()">
+          <input name="name" placeholder="Full Name" required>
+          <input name="phone" placeholder="Phone Number" required>
+          <input name="email" type="email" placeholder="Email Address" required>
+          <select name="property">
+            <option value="">Interested in</option>
+            <option>Luxury Apartment</option>
+            <option>Villa</option>
+            <option>Commercial Space</option>
+            <option>Mansion</option>
+          </select>
+          <textarea name="message" placeholder="Share your preferred location, budget or project name"></textarea>
+          <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+        <p id="visitSuccess"
+   style="display:none;color:#6ba3f5;font-size:.85rem;margin-top:.8rem;">
+  ✅ Thank you! A confirmation email has been sent to you.
+</p>
+        <iframe name="hidden_iframe" style="display:none"></iframe>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-pill">Secure Payments</div>
+    <div class="trust-pill">Verified Listings</div>
+    <div class="trust-pill">Legal Assistance</div>
+    <div class="trust-pill">Site Visit Support</div>
+  </div>
+</section>
+
+<footer>
+  <div><strong>HomeAxis</strong> · Real Estate &amp; Developments</div>
+  <div>© <span id="year"></span> HomeAxis. All rights reserved.</div>
+  <div>📧 contact.homeaxis@gmail.com &nbsp; | &nbsp; 📞 +91 8454045796, +91 8369484716, +91 7710841257</div>
+  <div class="legal-trust">Payments are processed securely via third-party gateways. Please review our Terms and Privacy Policy before making any booking token payment.</div>
+  <div style="margin-top:1rem;">
+    <a href="terms.html">Terms &amp; Conditions</a> | 
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<div id="emiModal" class="emi-modal">
+  <div class="emi-content">
+    <h3>EMI Calculator</h3>
+
+    <input type="number" id="loanAmount" placeholder="Loan Amount">
+    <input type="number" id="interestRate" placeholder="Interest Rate (%)">
+    <input type="number" id="tenure" placeholder="Tenure (years)">
+
+    <button onclick="calculateEMI()">Calculate</button>
+
+    <p id="emiResult"></p>
+
+    <button onclick="closeEMI()">Close</button>
+  </div>
+</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Load builder properties dynamically
+function loadBuilderProperties() {
+  const builderProperties = JSON.parse(
+    localStorage.getItem('builderProperties') || '[]'
+  ).filter(prop => (prop.status || "pending") === "approved");
+
+  const buyContainer = document.getElementById('buyProperties');
+
+  // 🔐 Collect existing (static) properties
+  const existingKeys = new Set(
+    Array.from(buyContainer.querySelectorAll('.property-card')).map(card => {
+      const name = card.querySelector('h3')?.textContent.trim().toLowerCase();
+      const location = card.dataset.location?.toLowerCase();
+      return `${name}|${location}`;
+    })
+  );
+
+  builderProperties.forEach(prop => {
+    const propertyName = (prop.propertyName || prop.name || "").trim();
+    const propertyType = (prop.propertyType || prop.type || "Property").trim();
+    const isReraChecked = String(prop.reraChecked || "yes").toLowerCase() === "yes";
+    const possessionStatus = (prop.possessionStatus || "Ready").trim();
+    const rawImage = String(prop.image || "").trim();
+    let propertyImage = "images/hero.jpeg";
+    if (rawImage) {
+      const isAbsoluteWeb = /^(https?:)?\/\//i.test(rawImage);
+      const isData = /^data:image\//i.test(rawImage);
+      const isProjectRelative = /^(images\/|\.\/images\/|\/images\/)/i.test(rawImage);
+      const windowsPathLike = /^[a-zA-Z]:\\/.test(rawImage) || rawImage.includes("\\");
+      const looksLikeFileName = !rawImage.includes("://");
+
+      if (isAbsoluteWeb || isData || isProjectRelative) {
+        propertyImage = rawImage;
+      } else if (windowsPathLike) {
+        const fileName = rawImage.split("\\").pop();
+        propertyImage = fileName ? `images/${fileName}` : "images/hero.jpeg";
+      } else if (looksLikeFileName) {
+        propertyImage = `images/${rawImage.replace(/^\/+/, "")}`;
+      }
+    }
+    const nameKey = propertyName.toLowerCase();
+    const locationKey = (prop.location || "").trim().toLowerCase();
+    const uniqueKey = `${nameKey}|${locationKey}`;
+
+    // 🚫 Skip duplicates
+    if (existingKeys.has(uniqueKey)) return;
+
+    const priceInLakhs = Number(prop.price || 0) / 100000;
+
+    const propertyCard = document.createElement('div');
+    propertyCard.className = 'property-card';
+    propertyCard.dataset.location = prop.location || "";
+    propertyCard.dataset.price = priceInLakhs;
+    propertyCard.dataset.type = propertyType;
+    propertyCard.dataset.rera = isReraChecked ? "yes" : "no";
+    propertyCard.dataset.possession = possessionStatus;
+
+    const displayPrice =
+      priceInLakhs >= 100
+        ? `₹${(priceInLakhs / 100).toFixed(1)} Cr onwards`
+        : `₹${priceInLakhs.toFixed(0)} Lakhs onwards`;
+
+    const rawBhk = String(prop.bhk || "").trim();
+    const safeBhk = rawBhk
+      ? (/bhk/i.test(rawBhk) ? rawBhk.toUpperCase() : `${rawBhk} BHK`)
+      : "-";
+    const safeArea = `${prop.area || "-"} sq.ft`;
+
+    propertyCard.innerHTML = `
+      <img src="${propertyImage}"
+           alt="${propertyName}"
+           onerror="this.src='images/hero.jpeg';">
+
+      <div class="property-info">
+        <h3>${propertyName}</h3>
+        <div class="property-location">📍 ${prop.location || ""}</div>
+        <div class="property-price">${displayPrice}</div>
+        <div class="property-details">
+          <span>${safeBhk}</span>
+          <span>${safeArea}</span>
+        </div>
+        <span class="property-type">${propertyType}</span>
+        <button class="book-btn" onclick="event.preventDefault(); bookProperty('${propertyName.replace(/'/g, "\\'")}', 2000)">
+          Book Now (₹2,000 Token)
+        </button>
+        <button class="emi-btn" onclick="event.preventDefault(); openEMI(${Number(prop.price || 0)})">
+          Calculate EMI
+        </button>
+      </div>
+    `;
+
+    buyContainer.appendChild(propertyCard);
+    existingKeys.add(uniqueKey); // prevent same-session duplicates
+  });
+
+  if (typeof initPropertyCardAnimations === "function") {
+    initPropertyCardAnimations();
+  }
+  if (typeof addBookingMicrocopy === "function") {
+    addBookingMicrocopy();
+  }
+  if (typeof enhancePropertyCards === "function") {
+    enhancePropertyCards();
+  }
+  if (typeof filterBuyProperties === "function") {
+    filterBuyProperties();
+  }
+  if (typeof optimizeNonHeroImages === "function") {
+    optimizeNonHeroImages();
+  }
+}
+
+
+// Filter functionality for Buy properties
+const buyFilters = {
+  location: document.getElementById('filterLocation'),
+  price: document.getElementById('filterPrice'),
+  type: document.getElementById('filterType')
+};
+
+function filterBuyProperties() {
+  const location = buyFilters.location.value.toLowerCase();
+  const priceRange = buyFilters.price.value;
+  const type = buyFilters.type.value.toLowerCase();
+  const buyProperties = document.querySelectorAll('#buyProperties .property-card');
+
+  buyProperties.forEach(card => {
+    const cardLocation = card.dataset.location.toLowerCase();
+    const cardPrice = parseFloat(card.dataset.price);
+    const cardType = card.dataset.type.toLowerCase();
+
+    let show = true;
+
+    if (location && !cardLocation.includes(location)) show = false;
+    if (type && cardType !== type) show = false;
+   if (priceRange) {
+  let min = 0, max = Infinity;
+
+  if (priceRange.includes('+')) {
+    min = Number(priceRange.replace('+',''));
+  } else {
+    [min, max] = priceRange.split('-').map(Number);
+  }
+
+  if (cardPrice < min || cardPrice > max) show = false;
+}
+
+    card.style.display = show ? 'block' : 'none';
+  });
+  updateResultsCount("#buyProperties .property-card", "buyResults");
+}
+
+buyFilters.location.addEventListener('change', filterBuyProperties);
+buyFilters.price.addEventListener('change', filterBuyProperties);
+buyFilters.type.addEventListener('change', filterBuyProperties);
+
+// Filter functionality for Rent properties
+const rentFilters = {
+  location: document.getElementById('filterLocationRent'),
+  price: document.getElementById('filterRentPrice'),
+  type: document.getElementById('filterTypeRent')
+};
+
+function filterRentProperties() {
+  const location = rentFilters.location.value.toLowerCase();
+  const priceRange = rentFilters.price.value;
+  const type = rentFilters.type.value.toLowerCase();
+  const rentProperties = document.querySelectorAll('#rentProperties .property-card');
+
+  rentProperties.forEach(card => {
+    const cardLocation = card.dataset.location.toLowerCase();
+    const cardRent = parseFloat(card.dataset.rent);
+    const cardType = card.dataset.type.toLowerCase();
+
+    let show = true;
+
+    if (location && !cardLocation.includes(location)) show = false;
+    if (type && cardType !== type) show = false;
+   if (priceRange) {
+  let min = 0, max = Infinity;
+
+  if (priceRange.includes('+')) {
+    min = Number(priceRange.replace('+',''));
+  } else {
+    [min, max] = priceRange.split('-').map(Number);
+  }
+
+  if (cardRent < min || cardRent > max) show = false;
+}
+
+
+    card.style.display = show ? 'block' : 'none';
+  });
+  updateResultsCount("#rentProperties .property-card", "rentResults");
+}
+
+function updateResultsCount(selector, outputId){
+  const cards = document.querySelectorAll(selector);
+  let visible = 0;
+  cards.forEach(card => {
+    if (card.style.display !== "none") visible += 1;
+  });
+  const output = document.getElementById(outputId);
+  if (output) output.textContent = `${visible} results found`;
+}
+
+function clearBuyFilters(){
+  buyFilters.location.value = "";
+  buyFilters.price.value = "";
+  buyFilters.type.value = "";
+  filterBuyProperties();
+}
+
+function clearRentFilters(){
+  rentFilters.location.value = "";
+  rentFilters.price.value = "";
+  rentFilters.type.value = "";
+  filterRentProperties();
+}
+
+rentFilters.location.addEventListener('change', filterRentProperties);
+rentFilters.price.addEventListener('change', filterRentProperties);
+rentFilters.type.addEventListener('change', filterRentProperties);
+
+// Load properties on page load
+loadBuilderProperties();
+filterBuyProperties();
+filterRentProperties();
+
+function openPropertyDetailFromCard(card) {
+  const name = card.querySelector(".property-info h3")?.textContent.trim() || "Property";
+  const location = card.querySelector(".property-location")?.textContent.replace(/^📍\s*/, "").trim() || "";
+  const priceText = card.querySelector(".property-price")?.textContent.replace(/\s+onwards$/i, "").trim() || "";
+  const image = card.querySelector("img")?.getAttribute("src") || "";
+  const details = Array.from(card.querySelectorAll(".property-details span"))
+    .map((el) => el.textContent.trim())
+    .filter(Boolean);
+
+  const params = new URLSearchParams({
+    name,
+    price: priceText,
+    location,
+    image
+  });
+
+  localStorage.setItem("selectedProperty", JSON.stringify({
+    name,
+    price: priceText,
+    location,
+    image,
+    details
+  }));
+
+  window.location.href = `property-detail.html?${params.toString()}`;
+}
+
+document.addEventListener("click", (event) => {
+  const blockedTarget = event.target.closest("button, a, input, select, textarea, form, label");
+  if (blockedTarget) return;
+
+  const card = event.target.closest("#buyProperties .property-card, #rentProperties .property-card");
+  if (!card) return;
+
+  openPropertyDetailFromCard(card);
+});
+
+// Listen for property updates from other pages
+window.addEventListener('storage', function(e) {
+  if(e.key === 'builderProperties' || e.key === 'brokerRequirements' || e.key === 'customerPreferences') {
+    location.reload(); // Reload to show new data
+  }
+});
+
+// Also listen for custom events (for same-tab updates)
+window.addEventListener('propertyAdded', function() {
+  loadBuilderProperties();
+});
+
+window.addEventListener('requirementAdded', function() {
+  loadBuilderProperties();
+});
+
+window.addEventListener('preferencesUpdated', function() {
+  loadBuilderProperties();
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+/* ===== PROJECT STORY SCROLL ANIMATION ===== */
+
+/* ===== BIDIRECTIONAL STORY SCROLL MODE ===== */
+
+const storySteps = document.querySelectorAll('.story-step');
+
+const storyObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      } else {
+        entry.target.classList.remove('active');
+      }
+    });
+  },
+  {
+    threshold: 0.4,
+    rootMargin: "0px 0px -10% 0px"
+  }
+);
+
+storySteps.forEach(step => storyObserver.observe(step));
+
+function showSuccess() {
+  setTimeout(() => {
+    document.getElementById("visitSuccess").style.display = "block";
+  }, 600);
+}
+function closeVisitForm() {
+  const form = document.querySelector("#visit .contact-form");
+  if (form) form.reset();
+  const success = document.getElementById("visitSuccess");
+  if (success) success.style.display = "none";
+}
+const sections = Array.from(
+  document.querySelectorAll("section[id]")
+).filter(section =>
+  document.querySelector(`.nav-links a[href="#${section.id}"]`)
+);
+const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+
+function setActiveLink() {
+  const viewportCenter = window.scrollY + window.innerHeight / 2;
+  let activeSection = sections[0].id;
+
+  for (let i = 0; i < sections.length; i++) {
+    const sectionTop = sections[i].offsetTop;
+    if (viewportCenter >= sectionTop) {
+      activeSection = sections[i].id;
+    }
+  }
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${activeSection}`) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", setActiveLink);
+window.addEventListener("load", setActiveLink);
+
+window.addEventListener("scroll", () => {
+  document.querySelector("header")
+    .classList.toggle("scrolled", window.scrollY > 60);
+});
+function playHeroVideo() {
+  const wrapper = document.querySelector(".hero-video");
+  const video = document.getElementById("heroVideo");
+
+  video.play();
+  wrapper.classList.add("playing");
+}
+function bookProperty(propertyName, amount) {
+  localStorage.setItem("bookingProperty", propertyName);
+  localStorage.setItem("bookingAmount", amount);
+  localStorage.removeItem("homeaxisBooking");
+  window.location.href = "payment.html";
+}
+document.addEventListener("mousemove", e => {
+  const cursor = document.createElement("div");
+  cursor.className = "cursor-trail";
+  cursor.style.left = e.pageX + "px";
+  cursor.style.top = e.pageY + "px";
+  document.body.appendChild(cursor);
+
+  setTimeout(() => cursor.remove(), 500);
+});
+const counters = document.querySelectorAll(".about-stat h3");
+
+counters.forEach(counter => {
+  const update = () => {
+    const target = +counter.innerText.replace(/\D/g,'');
+    let count = 0;
+    const increment = target / 100;
+
+    const animate = () => {
+      count += increment;
+      if (count < target) {
+        counter.innerText = Math.floor(count) + "+";
+        requestAnimationFrame(animate);
+      } else {
+        counter.innerText = target + "+";
+      }
+    };
+    animate();
+  };
+
+  update();
+});
+window.addEventListener("load", () => {
+  document.getElementById("loader").style.display = "none";
+});
+window.addEventListener("scroll", () => {
+  const heroImg = document.querySelector(".hero-video video");
+  if (heroImg) {
+    heroImg.style.transform = `scale(${1 + window.scrollY * 0.0003})`;
+  }
+});
+const cardObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("card-show");
+    observer.unobserve(entry.target);
+  });
+}, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+
+function initPropertyCardAnimations() {
+  document.querySelectorAll(".property-card").forEach((card, index) => {
+    if (card.classList.contains("card-show")) return;
+    // Small stagger keeps the premium feel without hiding cards indefinitely.
+    setTimeout(() => cardObserver.observe(card), index * 40);
+  });
+}
+
+initPropertyCardAnimations();
+document.querySelectorAll(".btn-primary").forEach(btn => {
+  btn.addEventListener("mousemove", (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  });
+
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "translate(0,0)";
+  });
+});
+const cursor = document.createElement("div");
+cursor.classList.add("custom-cursor");
+document.body.appendChild(cursor);
+
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("night-mode");
+
+  if (document.body.classList.contains("night-mode")) {
+    toggle.textContent = "☀";
+    localStorage.setItem("theme", "night");
+  } else {
+    toggle.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+});
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("theme") === "night") {
+    document.body.classList.add("night-mode");
+    toggle.textContent = "☀";
+  }
+});
+function setList() {
+  document.getElementById("buy").classList.add("list-view");
+}
+
+function setGrid() {
+  document.getElementById("buy").classList.remove("list-view");
+}
+
+function enhancePropertyCards(){
+  document.querySelectorAll(".property-card").forEach((card) => {
+    if (card.dataset.enhanced === "true") return;
+    const info = card.querySelector(".property-info");
+    const details = card.querySelectorAll(".property-details span");
+    const typeEl = card.querySelector(".property-type");
+    if (!info || !details.length) return;
+
+    const bhk = (details[0]?.textContent || "N/A").trim();
+    const area = (details[1]?.textContent || "N/A").trim();
+    const possession = (card.dataset.possession || (card.closest("#rentProperties") ? "Available Now" : "Ready")).trim();
+    const reraChecked = (card.dataset.rera || "yes").toLowerCase() === "yes";
+    const reraLabel = reraChecked ? "RERA Checked" : "RERA Pending";
+
+    const badges = document.createElement("div");
+    badges.className = "property-badges";
+    badges.innerHTML = `
+      <span class="badge badge-verified">Verified</span>
+      <span class="badge badge-rera">${reraLabel}</span>
+    `;
+
+    const keyfacts = document.createElement("div");
+    keyfacts.className = "property-keyfacts";
+    keyfacts.innerHTML = `
+      <div class="kf"><span class="kf-label">BHK</span><span class="kf-value">${bhk}</span></div>
+      <div class="kf"><span class="kf-label">Area</span><span class="kf-value">${area}</span></div>
+      <div class="kf"><span class="kf-label">Possession</span><span class="kf-value">${possession}</span></div>
+    `;
+
+    const locationEl = info.querySelector(".property-location");
+    if (locationEl) {
+      locationEl.insertAdjacentElement("afterend", badges);
+      badges.insertAdjacentElement("afterend", keyfacts);
+    } else {
+      info.prepend(keyfacts);
+      info.prepend(badges);
+    }
+
+    if (typeEl) typeEl.style.marginTop = "0";
+    card.dataset.enhanced = "true";
+  });
+}
+
+function addBookingMicrocopy(){
+  document.querySelectorAll(".property-card .book-btn").forEach((btn) => {
+    const parent = btn.parentElement;
+    if (!parent) return;
+    const next = btn.nextElementSibling;
+    if (next && next.classList && next.classList.contains("booking-note")) return;
+    const note = document.createElement("div");
+    note.className = "booking-note";
+    note.textContent = "Refundable token. Terms apply.";
+    btn.insertAdjacentElement("afterend", note);
+  });
+}
+
+addBookingMicrocopy();
+enhancePropertyCards();
+
+function optimizeNonHeroImages(){
+  document.querySelectorAll("img").forEach((img) => {
+    if (img.closest(".hero")) return;
+    img.setAttribute("loading", "lazy");
+    img.setAttribute("decoding", "async");
+  });
+}
+
+optimizeNonHeroImages();
+
+function toggleFilterPanel(wrapId, triggerBtn){
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  wrap.classList.toggle("collapsed");
+  const hidden = wrap.classList.contains("collapsed");
+  triggerBtn.textContent = hidden ? "Show Filters" : "Hide Filters";
+}
+
+function autoCollapseFiltersOnMobile(){
+  const isMobile = window.matchMedia("(max-width: 720px)").matches;
+  const buyWrap = document.getElementById("buyFiltersWrap");
+  const rentWrap = document.getElementById("rentFiltersWrap");
+  if (!buyWrap || !rentWrap) return;
+  if (!isMobile) {
+    buyWrap.classList.remove("collapsed");
+    rentWrap.classList.remove("collapsed");
+    document.querySelectorAll(".filter-toggle").forEach(btn => btn.textContent = "Hide Filters");
+    return;
+  }
+  buyWrap.classList.add("collapsed");
+  rentWrap.classList.add("collapsed");
+  document.querySelectorAll(".filter-toggle").forEach(btn => btn.textContent = "Show Filters");
+}
+
+autoCollapseFiltersOnMobile();
+window.addEventListener("resize", autoCollapseFiltersOnMobile);
+function openEMI(price) {
+  document.getElementById("emiModal").style.display = "flex";
+  document.getElementById("loanAmount").value = price;
+}
+
+function closeEMI() {
+  document.getElementById("emiModal").style.display = "none";
+}
+
+function calculateEMI() {
+  const P = parseFloat(document.getElementById("loanAmount").value);
+  const R = parseFloat(document.getElementById("interestRate").value) / 1200;
+  const N = parseFloat(document.getElementById("tenure").value) * 12;
+
+  const EMI = (P * R * Math.pow(1 + R, N)) /
+              (Math.pow(1 + R, N) - 1);
+
+  document.getElementById("emiResult").innerText =
+    "Monthly EMI: ₹" + EMI.toFixed(0);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms & Conditions | HomeAxis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c6a75e;--gold-soft:#e5d2a4;--text:#ececec;--muted:#b7b7b7}
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,sans-serif;background:radial-gradient(circle at top,#1b1b1b 0%,#050505 45%,#000 100%);color:var(--text);line-height:1.7}
+header{position:sticky;top:0;background:rgba(10,10,10,.9);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.nav{max-width:1100px;margin:0 auto;padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:#fff;text-decoration:none}
+.container{max-width:920px;margin:0 auto;padding:2rem 1.3rem 3rem}
+.back{color:var(--gold-soft);text-decoration:none;font-weight:600}
+h1{font-size:2rem;margin:1rem 0 .3rem}
+h2{font-size:1.25rem;margin:1.7rem 0 .6rem;color:var(--gold-soft)}
+p,li{color:var(--muted)}
+.card{background:rgba(16,16,16,.85);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1rem 1.1rem}
+footer{padding:1.4rem;text-align:center;border-top:1px solid rgba(255,255,255,.1);color:#a5a5a5}
+a{color:var(--gold-soft)}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">HOMEAXIS</a>
+    <a href="index.html" class="back">Back to Home</a>
+  </div>
+</header>
+<div class="container">
+  <h1>Terms & Conditions</h1>
+  <p><strong>Last Updated:</strong> <span id="updateDate"></span></p>
+
+  <div class="card">
+    <p>By accessing and using HomeAxis, you agree to these Terms. If you do not agree, please discontinue use of the website.</p>
+  </div>
+
+  <h2>1. Platform Role</h2>
+  <p>HomeAxis is an information and facilitation platform for real estate enquiries, site visits, and booking token workflows. Listings, pricing, and availability may change without prior notice.</p>
+
+  <h2>2. Property Information Disclaimer</h2>
+  <p>Property images, specifications, and descriptions are indicative. Final commercial, legal, and technical details are governed by official agreements and applicable law.</p>
+
+  <h2>3. Payments</h2>
+  <ul>
+    <li>Booking token payments are processed through authorized third-party payment providers.</li>
+    <li>Users must review payment details before confirming transactions.</li>
+    <li>Refund eligibility, adjustments, and settlement timelines are governed by transaction-specific terms and applicable law.</li>
+  </ul>
+
+  <h2>4. User Responsibilities</h2>
+  <ul>
+    <li>Provide accurate and lawful information.</li>
+    <li>Use the website only for legitimate, lawful purposes.</li>
+    <li>Do not misuse forms, payment channels, or platform content.</li>
+  </ul>
+
+  <h2>5. Limitation of Liability</h2>
+  <p>To the extent permitted by law, HomeAxis is not liable for indirect or consequential losses arising from website use, third-party service downtime, or inaccurate third-party information.</p>
+
+  <h2>6. Privacy and Consent</h2>
+  <p>Your use of this website is also governed by our <a href="privacy.html">Privacy Policy</a>. By submitting forms and payment consent, you permit processing of data required to complete your request and support operations.</p>
+
+  <h2>7. Governing Law and Jurisdiction</h2>
+  <p>These Terms are governed by the laws of India. Courts having competent jurisdiction in India shall have exclusive jurisdiction for disputes, subject to mandatory legal rights.</p>
+
+  <h2>8. Contact</h2>
+  <p>Email: contact.homeaxis@gmail.com<br>Phone: +91 8454045796, +91 8369484716, +91 7710841257</p>
+</div>
+<footer>
+  © <span id="year"></span> HomeAxis · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+</footer>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("updateDate").textContent = new Date().toLocaleDateString("en-IN",{year:"numeric",month:"long",day:"numeric"});
+</script>
+</body>
+</html>

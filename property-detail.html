@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property Details | HomeAxis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Montserrat,sans-serif;
+  background:radial-gradient(circle at top,#1a1a1a 0%, #0c0c0c 45%, #090909 100%);
+  color:#f5f5f5;
+  min-height:100vh;
+}
+
+.container{
+  width:min(1080px,92%);
+  margin:2.1rem auto;
+  padding:1.2rem;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  background:rgba(14,14,14,.66);
+  backdrop-filter:blur(8px);
+  box-shadow:0 24px 70px rgba(0,0,0,.38);
+  position:relative;
+}
+
+.page-close{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(0,0,0,.42);
+  color:#fff;
+  font-size:1.2rem;
+  line-height:1;
+  cursor:pointer;
+}
+
+.detail-layout{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:1.3rem;
+  align-items:stretch;
+}
+
+.image-card{
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:#111;
+  min-height:420px;
+}
+
+#heroImg{
+  width:100%;
+  height:100%;
+  min-height:420px;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  filter:contrast(1.04) saturate(1.03);
+}
+
+.info-panel{
+  background:rgba(17,17,17,.72);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:1.2rem 1.25rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+h1{
+  font-size:clamp(1.8rem,2.7vw,2.9rem);
+  margin:.1rem 0 .6rem;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.price{
+  color:#e2c178;
+  font-size:clamp(1.2rem,1.9vw,1.7rem);
+  margin-bottom:.5rem;
+  font-weight:600;
+}
+
+#location{
+  margin:.1rem 0 .5rem;
+  color:#ddd;
+  line-height:1.5;
+}
+
+.btn{
+  padding:.82rem 1.35rem;
+  border:none;
+  border-radius:999px;
+  margin-top:1rem;
+  cursor:pointer;
+  font-family:inherit;
+  font-weight:600;
+  font-size:.95rem;
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.03);
+}
+
+.btn:active{
+  transform:translateY(0);
+}
+
+.btn-gold{
+  color:#231704;
+  background:linear-gradient(135deg,#be9949,#f0d9a4 52%,#d9b774);
+  box-shadow:0 10px 25px rgba(198,167,94,.28);
+}
+
+.popup{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(4px);
+  padding:1rem;
+  z-index:30;
+}
+
+.popup-content{
+  background:linear-gradient(180deg,#111,#0b0b0b);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 30px 70px rgba(0,0,0,.45);
+  padding:1.6rem;
+  border-radius:16px;
+  width:100%;
+  max-width:430px;
+  position:relative;
+}
+
+.popup-content h2{
+  margin-top:.2rem;
+  margin-bottom:1rem;
+  font-size:1.3rem;
+}
+
+input{
+  width:100%;
+  padding:.84rem .95rem;
+  margin:.5rem 0;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.14);
+  background:#141414;
+  color:#f3f3f3;
+  outline:none;
+  font-family:inherit;
+}
+
+input:focus{
+  border-color:#d8ba77;
+  box-shadow:0 0 0 3px rgba(216,186,119,.16);
+}
+
+#successMsg{
+  margin-top:.8rem;
+}
+
+.form-close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:32px;
+  height:32px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  font-size:1.1rem;
+  line-height:1;
+  cursor:pointer;
+}
+
+@media (max-width: 640px){
+  .container{
+    margin:1rem auto 1.2rem;
+    padding:1.2rem;
+    border-radius:14px;
+  }
+
+  .detail-layout{
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
+
+  .image-card,
+  #heroImg{
+    min-height:240px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <button class="page-close" type="button" onclick="closeDetailsPage()" aria-label="Close page">×</button>
+  <div class="detail-layout">
+    <div class="image-card">
+      <img id="heroImg" src="" alt="Property Image">
+    </div>
+    <div class="info-panel">
+      <h1 id="title"></h1>
+      <div class="price" id="price"></div>
+      <p id="location"></p>
+      <button class="btn btn-gold" onclick="openPopup()">Enquire Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ENQUIRY POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <button class="form-close" type="button" onclick="closePopup()" aria-label="Close form">×</button>
+    <h2>Enquire Now</h2>
+
+    <form method="POST"
+      action="https://script.google.com/macros/s/AKfycbzH-f5OTdsMh7-s1e1MYuZJWsW2pyCCAUoX37xxmXys2PhrAcGmcGiaXoR5PBy9ghTc/exec"
+      target="hidden_iframe"
+      onsubmit="showSuccess()">
+
+      <input name="name" placeholder="Full Name" required>
+      <input name="phone" placeholder="Phone Number" required>
+      <input name="email" type="email" placeholder="Email Address" required>
+
+      <input type="hidden" name="property" id="propertyName">
+
+      <button class="btn btn-gold">Submit</button>
+    </form>
+
+    <p id="successMsg" style="display:none;color:#c6a75e;">
+      ✅ We will contact you soon!
+    </p>
+
+    <iframe name="hidden_iframe" style="display:none"></iframe>
+  </div>
+</div>
+
+<script>
+
+/* ===== GET DATA FROM URL ===== */
+const params = new URLSearchParams(window.location.search);
+
+function getStoredProperty() {
+  try {
+    const raw = localStorage.getItem("selectedProperty");
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (err) {
+    // Prevent malformed localStorage data from breaking this page.
+    return {};
+  }
+}
+
+const storedProperty = getStoredProperty();
+
+const name = String(params.get("name") || storedProperty.name || "").trim();
+const price = String(params.get("price") || storedProperty.price || "").trim();
+const locationText = String(params.get("location") || storedProperty.location || "").trim();
+const image = String(params.get("image") || storedProperty.image || "").trim();
+
+const safeName = name || "Property";
+const safeLocation = locationText || "Location not available";
+
+let safePrice = "Price on request";
+if (price) {
+  safePrice = /₹|rs\.?/i.test(price) ? price : `₹ ${price}`;
+}
+
+/* ===== SET DATA ===== */
+document.getElementById("title").innerText = safeName;
+document.getElementById("price").innerText = safePrice;
+document.getElementById("location").innerText = safeLocation;
+
+/* ===== SET HERO IMAGE ===== */
+document.getElementById("heroImg").src = image || "images/hero.jpeg";
+
+/* ===== SET FORM PROPERTY NAME ===== */
+document.getElementById("propertyName").value = safeName;
+
+/* ===== POPUP ===== */
+function openPopup(){
+  document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+function showSuccess(){
+  document.getElementById("successMsg").style.display="block";
+}
+
+function closeDetailsPage(){
+  if (document.referrer && document.referrer.includes(window.location.origin)) {
+    history.back();
+    return;
+  }
+  window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>

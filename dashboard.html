@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard | HomeAxis Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f6f1;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card-dark:#161616;
+  --text-main:#1c1c1c;
+  --text-muted:#6b6b6b;
+  --border-soft:rgba(0,0,0,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Montserrat, sans-serif;
+  background:var(--bg);
+  color:var(--text-main);
+  min-height:100vh;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:5rem 1.5rem;
+}
+
+/* ===== HEADER ===== */
+.dashboard-header{
+  text-align:center;
+  margin-bottom:3rem;
+}
+
+.dashboard-header h1{
+  font-size:2.4rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  margin-bottom:.6rem;
+}
+
+.dashboard-header p{
+  color:var(--text-muted);
+  font-size:.95rem;
+}
+
+/* ===== USER CARDS GRID ===== */
+.user-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2.2rem;
+  margin-top:3rem;
+}
+
+/* ===== DARK EXECUTIVE CARDS ===== */
+.user-card{
+  background:var(--card-dark);
+  border-radius:18px;
+  padding:2.6rem 2rem;
+  border:1px solid rgba(198,167,94,.18);
+  box-shadow:0 35px 70px rgba(0,0,0,.35);
+  transition:all .35s ease;
+  text-align:center;
+  cursor:pointer;
+  color:#ffffff;
+}
+
+.user-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 50px 90px rgba(0,0,0,.5);
+}
+
+/* Icon */
+.user-card-icon{
+  font-size:3.2rem;
+  margin-bottom:1.2rem;
+}
+
+/* Headings */
+.user-card h2{
+  font-size:1.3rem;
+  margin-bottom:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--gold-soft);
+}
+
+/* Description */
+.user-card p{
+  font-size:.85rem;
+  line-height:1.7;
+  color:rgba(255,255,255,.75);
+  margin-bottom:1.8rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.85rem 2rem;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .3s ease;
+}
+
+/* Gold Primary Button */
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  border:none;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(198,167,94,.45);
+}
+
+/* Outline Buttons (bottom links) */
+.btn-outline{
+  border:1px solid rgba(0,0,0,.15);
+  color:var(--text-main);
+  background:transparent;
+}
+
+.btn-outline:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:720px){
+  .dashboard-header h1{
+    font-size:2rem;
+  }
+  .user-cards{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="dashboard-header">
+    <h1>Welcome to HomeAxis</h1>
+    <p>Choose your profile to continue</p>
+  </div>
+  
+  <div class="user-cards">
+    <div class="user-card" onclick="location.href='broker-login.html'">
+      <div class="user-card-icon">🏢</div>
+      <h2>Broker</h2>
+      <p>Manage customer requirements, set preferences for age, gender, profession, and guarantee flats for qualified customers. Access OTP verification and confirmation emails.</p>
+      <a href="broker-login.html" class="btn btn-primary">Login / Sign Up</a>
+    </div>
+    
+    <div class="user-card" onclick="location.href='builder-login.html'">
+      <div class="user-card-icon">🏗️</div>
+      <h2>Builder</h2>
+      <p>List your properties, manage your property website, and showcase your real estate projects to potential buyers and renters.</p>
+      <a href="builder-login.html" class="btn btn-primary">Login / Sign Up</a>
+    </div>
+    
+    <div class="user-card" onclick="location.href='customer-login.html'">
+      <div class="user-card-icon">👤</div>
+      <h2>Customer</h2>
+      <p>Search for properties, set your preferences for location, area, square feet, and connect with brokers to find your dream home.</p>
+      <a href="customer-login.html" class="btn btn-primary">Login / Sign Up</a>
+    </div>
+  </div>
+  
+  <div style="text-align:center;margin-top:3rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="index.html" class="btn btn-outline">Browse All Properties</a>
+    <a href="index.html#buy" class="btn btn-outline">Properties for Sale</a>
+    <a href="index.html#rent" class="btn btn-outline">Properties for Rent</a>
+  </div>
+</div>
+</body>
+</html>

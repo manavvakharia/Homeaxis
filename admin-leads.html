@@ -1,0 +1,218 @@
+/* ===== HOMEAXIS LEADS PAGE (LUXURY SYSTEM) ===== */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeAxis | Luxury Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card:#161616;
+  --text-muted:rgba(255,255,255,.65);
+}
+
+body{
+  margin:0;
+  font-family:Montserrat, sans-serif;
+  min-height:100vh;
+  background:#111111;
+  color:#ffffff;
+}
+
+/* Page container */
+.container{
+  max-width:1180px;
+  margin:6rem auto 4rem;
+  padding:0 1.5rem;
+}
+
+/* Page heading */
+.container h2{
+  font-size:1.4rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  color:#ffffff;
+}
+
+/* Wrapper */
+.leads-container{
+  background:#161616;
+  border-radius:18px;
+  border:1px solid rgba(198,167,94,.15);
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+  overflow:hidden;
+  transition:all .4s ease;
+}
+
+.leads-container:hover{
+  border-color:var(--gold);
+  box-shadow:0 60px 100px rgba(0,0,0,.75);
+}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+/* Header */
+thead{
+  background:#141414;
+}
+
+th{
+  padding:1.1rem 1rem;
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  text-align:left;
+  border-bottom:1px solid rgba(198,167,94,.15);
+}
+
+td{
+  padding:1rem;
+  font-size:.9rem;
+  color:#ffffff;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+/* Subtle muted fields */
+td:nth-child(3),
+td:nth-child(4){
+  color:var(--text-muted);
+  font-size:.85rem;
+}
+
+/* Hover effect */
+tbody tr{
+  transition:background .25s ease;
+}
+
+tbody tr:hover{
+  background:rgba(198,167,94,.08);
+}
+
+/* Last row */
+tbody tr:last-child td{
+  border-bottom:none;
+}
+
+/* Top bar */
+.leads-topbar{
+  display:flex;
+  justify-content:flex-start;
+  margin-bottom:1.6rem;
+}
+
+/* Back button (match main button style but outline version) */
+.back-btn{
+  padding:.7rem 1.8rem;
+  border-radius:999px;
+  border:1px solid rgba(198,167,94,.3);
+  background:transparent;
+  color:var(--gold-soft);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .3s ease;
+}
+
+.back-btn:hover{
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  box-shadow:0 12px 30px rgba(198,167,94,.45);
+  transform:translateY(-2px);
+}
+
+/* Responsive */
+@media(max-width:900px){
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+}
+</style>
+
+<body>
+
+<header>
+  <!-- same header as admin dashboard -->
+</header>
+
+<div class="container">
+    <div class="leads-topbar">
+  <button class="back-btn" onclick="location.href='admin.html'">
+    ← Dashboard
+  </button>
+</div>
+
+  <h2>Site Visit Leads</h2>
+
+  <!-- 👇 PUT THE TABLE HERE -->
+  <div class="leads-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Property Interest</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody id="leadsBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 👇 SCRIPT GOES AFTER TABLE -->
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  if(localStorage.getItem('adminLoggedIn') !== 'true'){
+    location.href='login.html';
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbzH-f5OTdsMh7-s1e1MYuZJWsW2pyCCAUoX37xxmXys2PhrAcGmcGiaXoR5PBy9ghTc/exec")
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.getElementById("leadsBody");
+
+      if (!data.length) {
+        tbody.innerHTML = `<tr><td colspan="6">No leads found</td></tr>`;
+        return;
+      }
+
+      data.forEach(lead => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${lead.Timestamp || '-'}</td>
+            <td>${lead.Name || '-'}</td>
+            <td>${lead.Phone || '-'}</td>
+            <td>${lead.Email || '-'}</td>
+            <td>${lead["Property interest"] || '-'}</td>
+            <td>${lead.Location || '-'}</td>
+          </tr>
+        `;
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("leadsBody").innerHTML =
+        `<tr><td colspan="6">Error loading leads</td></tr>`;
+    });
+
+});
+</script>

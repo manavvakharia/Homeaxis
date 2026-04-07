@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful | HomeAxis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c6a75e;--gold-soft:#e5d2a4;--muted:#bcbcbc}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.2rem;
+  background:radial-gradient(circle at top,#1b1b1b 0%,#050505 45%,#000 100%);font-family:Montserrat,sans-serif;color:#fff
+}
+.container{
+  width:min(560px,98%);background:rgba(12,12,12,.92);border:1px solid rgba(198,167,94,.22);border-radius:20px;
+  padding:2rem;box-shadow:0 40px 110px rgba(0,0,0,.82);text-align:center
+}
+.checkmark{
+  width:88px;height:88px;margin:0 auto 1rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--gold);font-size:2rem;color:var(--gold-soft);font-weight:700
+}
+h2{margin:.2rem 0 .6rem}
+p{color:var(--muted);margin:.2rem 0 .9rem}
+.details{
+  text-align:left;background:#111;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;line-height:1.7;
+  font-size:.9rem;margin:1.2rem 0 1.1rem
+}
+.actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+button{
+  border:none;border-radius:999px;padding:.8rem 1.2rem;cursor:pointer;font-weight:700;font-family:inherit;
+  letter-spacing:.08em;text-transform:uppercase;font-size:.74rem
+}
+.primary{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#1d1205}
+.secondary{background:#222;color:#fff}
+.footer{margin-top:1rem;color:#9f9f9f;font-size:.75rem;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="checkmark">✓</div>
+  <h2>Payment Successful</h2>
+  <p>Your booking token has been received.</p>
+  <div class="details" id="bookingDetails">Loading booking details...</div>
+  <div class="actions">
+    <button class="primary" onclick="goHome()">Return to Home</button>
+    <button class="secondary" onclick="downloadInvoice()">Download Invoice</button>
+  </div>
+  <div class="footer">Thank you for choosing HomeAxis.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const booking = JSON.parse(localStorage.getItem("homeaxisBooking") || "null");
+if (booking){
+  booking.status = "Payment Successful";
+  if (!booking.invoiceNumber) {
+    booking.invoiceNumber = "HX-" + Date.now();
+  }
+  localStorage.setItem("homeaxisBooking", JSON.stringify(booking));
+  document.getElementById("bookingDetails").innerHTML = `
+    <strong>Invoice #:</strong> ${booking.invoiceNumber || "N/A"}<br>
+    <strong>Buyer Name:</strong> ${booking.buyerName || "N/A"}<br>
+    <strong>Buyer Phone:</strong> ${booking.buyerPhone || "N/A"}<br>
+    <strong>Property:</strong> ${booking.property || "N/A"}<br>
+    <strong>Amount Paid:</strong> ₹${Number(booking.amount || 0).toLocaleString("en-IN")}<br>
+    <strong>Date:</strong> ${booking.date || new Date().toLocaleString()}<br>
+    <strong>Status:</strong> ${booking.status}
+  `;
+} else {
+  document.getElementById("bookingDetails").innerHTML = "Booking details not found.";
+}
+function goHome(){ window.location.href = "index.html"; }
+function downloadInvoice(){
+  if (!booking){ alert("Booking details not found."); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const invoiceId = booking.invoiceNumber || ("HX-" + Date.now());
+
+  doc.setFillColor(18, 18, 18);
+  doc.rect(0, 0, 210, 297, "F");
+
+  doc.setFillColor(198,167,94);
+  doc.rect(0,0,210,28,"F");
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(20);
+  doc.setTextColor(22, 15, 8);
+  doc.text("HOMEAXIS INVOICE",105,18,{align:"center"});
+
+  doc.setTextColor(230, 230, 230);
+  doc.setFontSize(10);
+  doc.text("Invoice Number: " + invoiceId,20,42);
+  doc.text("Issued On: " + (booking.date || new Date().toLocaleString()),20,49);
+  doc.text("Status: " + (booking.status || "Paid"),20,56);
+
+  doc.setDrawColor(198,167,94);
+  doc.line(20,62,190,62);
+
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(12);
+  doc.setTextColor(229, 210, 164);
+  doc.text("Buyer Details",20,74);
+  doc.setFont("helvetica","normal");
+  doc.setTextColor(235, 235, 235);
+  doc.text("Name: " + (booking.buyerName || "N/A"),20,83);
+  doc.text("Phone: " + (booking.buyerPhone || "N/A"),20,90);
+
+  doc.setFont("helvetica","bold");
+  doc.setTextColor(229, 210, 164);
+  doc.text("Booking Details",20,106);
+  doc.setFont("helvetica","normal");
+  doc.setTextColor(235, 235, 235);
+  doc.text("Property: " + (booking.property || "N/A"),20,115);
+  doc.text("Amount Paid: INR " + Number(booking.amount || 0).toLocaleString("en-IN"),20,122);
+  doc.text("Payment Method: Online (Stripe)",20,129);
+
+  doc.setDrawColor(80, 80, 80);
+  doc.line(20,140,190,140);
+  doc.setFontSize(9);
+  doc.setTextColor(175, 175, 175);
+  doc.text("This is a system generated invoice and is valid without physical signature.",20,149);
+
+  doc.save(`${invoiceId}.pdf`);
+}
+</script>
+</body>
+</html>

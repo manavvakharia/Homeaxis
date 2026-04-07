@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Booking | HomeAxis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c6a75e;--gold-soft:#e5d2a4;--text-muted:rgba(255,255,255,.72)}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.8rem 1rem;
+  background:radial-gradient(circle at top,#1b1b1b 0%,#050505 45%,#000000 100%);
+  font-family:Montserrat,sans-serif;color:#fff
+}
+.container{
+  width:min(520px,96%);background:rgba(11,11,11,.92);border:1px solid rgba(198,167,94,.25);
+  border-radius:22px;padding:2.2rem;box-shadow:0 40px 110px rgba(0,0,0,.82);text-align:center
+}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem}
+.logo{font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:.78rem}
+.badge{padding:.24rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-size:.63rem;text-transform:uppercase;letter-spacing:.16em;color:var(--text-muted)}
+.credit-card{width:100%;height:220px;perspective:1000px;margin-bottom:1.5rem}
+.card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .8s ease}
+.card-inner.flip{transform:rotateY(180deg)}
+.card-front,.card-back{
+  position:absolute;width:100%;height:100%;border-radius:16px;padding:1.4rem;backface-visibility:hidden;
+  background:linear-gradient(145deg,#121212,#1a1a1a);border:1px solid rgba(198,167,94,.15);box-shadow:0 30px 60px rgba(0,0,0,.7)
+}
+.card-front{display:flex;flex-direction:column;justify-content:space-between;text-align:left}
+.card-front div:first-child{letter-spacing:.2em;font-size:.72rem;text-transform:uppercase;color:var(--gold-soft)}
+.card-number{letter-spacing:3px;font-size:1.25rem;font-weight:600}
+.card-front div:last-child{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+.card-back{transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
+.property-name{font-size:.95rem;color:var(--text-muted);margin-bottom:.5rem}
+.amount{font-size:2rem;font-weight:900;letter-spacing:.06em;color:var(--gold-soft);margin-bottom:.5rem}
+.note{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.breakdown{display:flex;justify-content:space-between;font-size:.82rem;color:var(--text-muted);margin-bottom:1.4rem}
+.breakdown strong{color:#fff}
+button{
+  width:100%;padding:.95rem 1.8rem;border:none;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .3s ease
+}
+button:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(198,167,94,.45)}
+.secure{font-size:.68rem;margin-top:1rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.legal{margin-top:.8rem;font-size:.75rem;color:var(--text-muted)}
+.legal a{color:var(--gold-soft)}
+.consent-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:1rem;z-index:50}
+.consent-card{width:min(560px,96%);background:#101010;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:1.2rem 1.2rem 1rem}
+.consent-card h3{margin:.2rem 0 .6rem}
+.consent-card p{font-size:.85rem;line-height:1.6;color:var(--text-muted)}
+.buyer-fields{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.8rem 0}
+.buyer-fields input{
+  width:100%;padding:.72rem .8rem;border-radius:10px;border:1px solid rgba(255,255,255,.15);
+  background:#171717;color:#fff;font-family:inherit
+}
+.consent-check{display:flex;gap:.6rem;align-items:flex-start;margin:.9rem 0;text-align:left;font-size:.84rem}
+.consent-actions{display:flex;gap:.6rem}
+.consent-actions button{width:50%}
+.btn-secondary{background:#222;color:#fff;letter-spacing:.06em}
+@media (max-width:600px){.container{padding:1.5rem}.credit-card{height:200px}.buyer-fields{grid-template-columns:1fr}.consent-actions{flex-direction:column}.consent-actions button{width:100%}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">HomeAxis</div>
+    <div class="badge">Secure booking</div>
+  </div>
+  <div class="credit-card">
+    <div class="card-inner" id="card">
+      <div class="card-front">
+        <div>HOMEAXIS</div>
+        <div class="card-number">•••• •••• •••• ••••</div>
+        <div>Luxury Client</div>
+      </div>
+      <div class="card-back">Secure Booking</div>
+    </div>
+  </div>
+  <div class="property-name" id="propertyLabel">Property: Luxury Villa</div>
+  <div class="amount" id="amountLabel">₹2,000</div>
+  <div class="note">refundable token amount</div>
+  <div class="breakdown"><span>Property booking token</span><strong id="breakdownAmount">₹2,000</strong></div>
+  <button onclick="openConsent()">Proceed To Payment</button>
+  <div class="secure">Secured via Stripe • 256-bit SSL Encryption</div>
+  <div class="legal">By continuing, you agree to our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms</a>.</div>
+</div>
+
+<div class="consent-modal" id="consentModal">
+  <div class="consent-card">
+    <h3>Privacy & Payment Consent</h3>
+    <p>We use your name, phone, email, selected property, and payment metadata to process your booking and provide support. Payments are processed by Stripe and subject to their terms and security standards. HomeAxis does not store full card details.</p>
+    <p>Please review our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms & Conditions</a> before proceeding.</p>
+    <div class="buyer-fields">
+      <input id="buyerName" type="text" placeholder="Buyer Full Name" maxlength="60">
+      <input id="buyerPhone" type="tel" placeholder="Buyer Phone Number" maxlength="15">
+    </div>
+    <label class="consent-check">
+      <input type="checkbox" id="consentCheck">
+      <span>I have read and agree to the Privacy Policy and Terms, and I consent to processing my booking data for this transaction.</span>
+    </label>
+    <div class="consent-actions">
+      <button class="btn-secondary" onclick="closeConsent()">Cancel</button>
+      <button onclick="payNow()">Agree & Pay</button>
+    </div>
+  </div>
+</div>
+
+<script>
+setInterval(() => { document.getElementById("card").classList.toggle("flip"); }, 4000);
+
+const selectedProperty = localStorage.getItem("bookingProperty") || "Luxury Villa";
+const selectedAmount = Number(localStorage.getItem("bookingAmount") || 2000);
+document.getElementById("propertyLabel").textContent = `Property: ${selectedProperty}`;
+document.getElementById("amountLabel").textContent = `₹${selectedAmount.toLocaleString("en-IN")}`;
+document.getElementById("breakdownAmount").textContent = `₹${selectedAmount.toLocaleString("en-IN")}`;
+
+function openConsent(){ document.getElementById("consentModal").style.display = "flex"; }
+function closeConsent(){ document.getElementById("consentModal").style.display = "none"; }
+
+function generateInvoiceNumber(){
+  const now = new Date();
+  const datePart = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,"0")}${String(now.getDate()).padStart(2,"0")}`;
+  const randomPart = Math.floor(1000 + Math.random() * 9000);
+  return `HX-${datePart}-${randomPart}`;
+}
+
+function payNow(){
+  const buyerName = document.getElementById("buyerName").value.trim();
+  const buyerPhone = document.getElementById("buyerPhone").value.trim();
+  if (!buyerName){
+    alert("Please enter buyer full name.");
+    return;
+  }
+  if (!/^[0-9]{10,15}$/.test(buyerPhone.replace(/\s+/g, ""))){
+    alert("Please enter a valid phone number.");
+    return;
+  }
+  const consentGiven = document.getElementById("consentCheck").checked;
+  if (!consentGiven){
+    alert("Please accept the Privacy Policy and Terms to continue.");
+    return;
+  }
+  const booking = {
+    property: selectedProperty,
+    amount: selectedAmount,
+    currency: "INR",
+    date: new Date().toLocaleString(),
+    status: "Pending Payment",
+    consentAccepted: true,
+    buyerName,
+    buyerPhone,
+    invoiceNumber: generateInvoiceNumber()
+  };
+  localStorage.setItem("homeaxisBooking", JSON.stringify(booking));
+  window.location.href = "https://book.stripe.com/test_7sY28r5f91ki2rG2jEfUQ00";
+}
+</script>
+</body>
+</html>

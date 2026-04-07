@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seed Customers | HomeAxis</title>
+</head>
+<body>
+<p>Seeding 50 Indian customers to localStorage...</p>
+<script>
+// 50 Indian customers with login credentials (password: demo123)
+// Matches people_db.sql - use for customer login and broker potential customers
+const CUSTOMERS = [
+  { name:"Amit Sharma", age:24, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"amit24@gmail.com", contact_no:"9876543210", password:"demo123" },
+  { name:"Riya Mehta", age:22, gender:"Female", profession:"Student", maritalStatus:"Single", email:"riya22@gmail.com", contact_no:"9876543211", password:"demo123" },
+  { name:"Rahul Verma", age:28, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"rahul28@gmail.com", contact_no:"9876543212", password:"demo123" },
+  { name:"Sneha Iyer", age:26, gender:"Female", profession:"Engineer", maritalStatus:"Single", email:"sneha26@gmail.com", contact_no:"9876543213", password:"demo123" },
+  { name:"Karan Patel", age:32, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"karan32@gmail.com", contact_no:"9876543214", password:"demo123" },
+  { name:"Neha Singh", age:29, gender:"Female", profession:"Government Employee", maritalStatus:"Married", email:"neha29@gmail.com", contact_no:"9876543215", password:"demo123" },
+  { name:"Arjun Nair", age:35, gender:"Male", profession:"IT Professional", maritalStatus:"Married", email:"arjun35@gmail.com", contact_no:"9876543216", password:"demo123" },
+  { name:"Pooja Kulkarni", age:27, gender:"Female", profession:"Other", maritalStatus:"Single", email:"pooja27@gmail.com", contact_no:"9876543217", password:"demo123" },
+  { name:"Rohit Malhotra", age:31, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"rohit31@gmail.com", contact_no:"9876543218", password:"demo123" },
+  { name:"Ananya Bose", age:23, gender:"Female", profession:"Student", maritalStatus:"Single", email:"ananya23@gmail.com", contact_no:"9876543219", password:"demo123" },
+  { name:"Vikas Jain", age:36, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"vikas36@gmail.com", contact_no:"9876543220", password:"demo123" },
+  { name:"Simran Kaur", age:25, gender:"Female", profession:"IT Professional", maritalStatus:"Single", email:"simran25@gmail.com", contact_no:"9876543221", password:"demo123" },
+  { name:"Nikhil Gupta", age:34, gender:"Male", profession:"Other", maritalStatus:"Married", email:"nikhil34@gmail.com", contact_no:"9876543222", password:"demo123" },
+  { name:"Ayesha Khan", age:28, gender:"Female", profession:"Other", maritalStatus:"Single", email:"ayesha28@gmail.com", contact_no:"9876543223", password:"demo123" },
+  { name:"Siddharth Roy", age:30, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"sid30@gmail.com", contact_no:"9876543224", password:"demo123" },
+  { name:"Mehul Shah", age:41, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"mehul41@gmail.com", contact_no:"9876543225", password:"demo123" },
+  { name:"Divya Agarwal", age:33, gender:"Female", profession:"Engineer", maritalStatus:"Married", email:"divya33@gmail.com", contact_no:"9876543226", password:"demo123" },
+  { name:"Aditya Rao", age:26, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"aditya26@gmail.com", contact_no:"9876543227", password:"demo123" },
+  { name:"Tanvi Joshi", age:24, gender:"Female", profession:"Student", maritalStatus:"Single", email:"tanvi24@gmail.com", contact_no:"9876543228", password:"demo123" },
+  { name:"Manish Pandey", age:38, gender:"Male", profession:"Government Employee", maritalStatus:"Married", email:"manish38@gmail.com", contact_no:"9876543229", password:"demo123" },
+  { name:"Kriti Malhotra", age:29, gender:"Female", profession:"Other", maritalStatus:"Single", email:"kriti29@gmail.com", contact_no:"9876543230", password:"demo123" },
+  { name:"Akash Yadav", age:27, gender:"Male", profession:"Engineer", maritalStatus:"Single", email:"akash27@gmail.com", contact_no:"9876543231", password:"demo123" },
+  { name:"Nandini Sen", age:34, gender:"Female", profession:"Teacher", maritalStatus:"Married", email:"nandini34@gmail.com", contact_no:"9876543232", password:"demo123" },
+  { name:"Pratik Desai", age:31, gender:"Male", profession:"Engineer", maritalStatus:"Married", email:"pratik31@gmail.com", contact_no:"9876543233", password:"demo123" },
+  { name:"Shreya Kapoor", age:25, gender:"Female", profession:"Other", maritalStatus:"Single", email:"shreya25@gmail.com", contact_no:"9876543234", password:"demo123" },
+  { name:"Ramesh Pillai", age:45, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"ramesh45@gmail.com", contact_no:"9876543235", password:"demo123" },
+  { name:"Ishita Banerjee", age:28, gender:"Female", profession:"Doctor", maritalStatus:"Single", email:"ishita28@gmail.com", contact_no:"9876543236", password:"demo123" },
+  { name:"Harsh Vardhan", age:33, gender:"Male", profession:"IT Professional", maritalStatus:"Married", email:"harsh33@gmail.com", contact_no:"9876543237", password:"demo123" },
+  { name:"Sonal Mittal", age:37, gender:"Female", profession:"Other", maritalStatus:"Married", email:"sonal37@gmail.com", contact_no:"9876543238", password:"demo123" },
+  { name:"Yash Choudhary", age:22, gender:"Male", profession:"Student", maritalStatus:"Single", email:"yash22@gmail.com", contact_no:"9876543239", password:"demo123" },
+  { name:"Bhavna Arora", age:40, gender:"Female", profession:"Teacher", maritalStatus:"Married", email:"bhavna40@gmail.com", contact_no:"9876543240", password:"demo123" },
+  { name:"Ankit Bansal", age:35, gender:"Male", profession:"IT Professional", maritalStatus:"Married", email:"ankit35@gmail.com", contact_no:"9876543241", password:"demo123" },
+  { name:"Lavanya Reddy", age:26, gender:"Female", profession:"Doctor", maritalStatus:"Single", email:"lavanya26@gmail.com", contact_no:"9876543242", password:"demo123" },
+  { name:"Suresh Naidu", age:48, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"suresh48@gmail.com", contact_no:"9876543243", password:"demo123" },
+  { name:"Mitali Ghosh", age:31, gender:"Female", profession:"IT Professional", maritalStatus:"Single", email:"mitali31@gmail.com", contact_no:"9876543244", password:"demo123" },
+  { name:"Kunal Saxena", age:29, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"kunal29@gmail.com", contact_no:"9876543245", password:"demo123" },
+  { name:"Farah Sheikh", age:34, gender:"Female", profession:"Other", maritalStatus:"Married", email:"farah34@gmail.com", contact_no:"9876543246", password:"demo123" },
+  { name:"Abhishek Tiwari", age:27, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"abhishek27@gmail.com", contact_no:"9876543247", password:"demo123" },
+  { name:"Ritu Chawla", age:42, gender:"Female", profession:"Business Owner", maritalStatus:"Married", email:"ritu42@gmail.com", contact_no:"9876543248", password:"demo123" },
+  { name:"Sameer Kulkarni", age:39, gender:"Male", profession:"Engineer", maritalStatus:"Married", email:"sameer39@gmail.com", contact_no:"9876543249", password:"demo123" },
+  { name:"Aarav Kulkarni", age:21, gender:"Male", profession:"Student", maritalStatus:"Single", email:"aarav21@gmail.com", contact_no:"9876543250", password:"demo123" },
+  { name:"Diya Shah", age:23, gender:"Female", profession:"Student", maritalStatus:"Single", email:"diya23@gmail.com", contact_no:"9876543251", password:"demo123" },
+  { name:"Mohit Arora", age:34, gender:"Male", profession:"IT Professional", maritalStatus:"Married", email:"mohit34@gmail.com", contact_no:"9876543252", password:"demo123" },
+  { name:"Pallavi Deshpande", age:28, gender:"Female", profession:"Doctor", maritalStatus:"Single", email:"pallavi28@gmail.com", contact_no:"9876543253", password:"demo123" },
+  { name:"Naveen Joshi", age:46, gender:"Male", profession:"Business Owner", maritalStatus:"Married", email:"naveen46@gmail.com", contact_no:"9876543254", password:"demo123" },
+  { name:"Rachel Dsouza", age:31, gender:"Female", profession:"IT Professional", maritalStatus:"Married", email:"rachel31@gmail.com", contact_no:"9876543255", password:"demo123" },
+  { name:"Shubham Patil", age:26, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"shubham26@gmail.com", contact_no:"9876543256", password:"demo123" },
+  { name:"Kavita Menon", age:44, gender:"Female", profession:"Government Employee", maritalStatus:"Married", email:"kavita44@gmail.com", contact_no:"9876543257", password:"demo123" },
+  { name:"Rohan Sethi", age:29, gender:"Male", profession:"IT Professional", maritalStatus:"Single", email:"rohan29@gmail.com", contact_no:"9876543258", password:"demo123" },
+  { name:"Meera Kulkarni", age:36, gender:"Female", profession:"Other", maritalStatus:"Married", email:"meera36@gmail.com", contact_no:"9876543259", password:"demo123" }
+];
+
+// Property preferences (broker matching) - location, type, bhk, budget
+const PREFERENCES = [
+  { location:"Mumbai", type:"Apartment", bhk:"2 BHK", budget:85 },
+  { location:"Bangalore", type:"Apartment", bhk:"2 BHK", budget:55 },
+  { location:"Pune", type:"Apartment", bhk:"3 BHK", budget:95 },
+  { location:"Delhi", type:"Apartment", bhk:"2 BHK", budget:75 },
+  { location:"Mumbai", type:"Villa", bhk:"4+ BHK", budget:160 },
+  { location:"Gurgaon", type:"Apartment", bhk:"3 BHK", budget:90 },
+  { location:"Bangalore", type:"Apartment", bhk:"3 BHK", budget:120 },
+  { location:"Pune", type:"Apartment", bhk:"2 BHK", budget:65 },
+  { location:"Mumbai", type:"Commercial", bhk:"Office Space", budget:200 },
+  { location:"Chennai", type:"Apartment", bhk:"2 BHK", budget:50 },
+  { location:"Delhi", type:"Villa", bhk:"4+ BHK", budget:250 },
+  { location:"Hyderabad", type:"Apartment", bhk:"2 BHK", budget:70 },
+  { location:"Mumbai", type:"Apartment", bhk:"3 BHK", budget:150 },
+  { location:"Bangalore", type:"Apartment", bhk:"2 BHK", budget:60 },
+  { location:"Pune", type:"Apartment", bhk:"3 BHK", budget:85 },
+  { location:"Surat", type:"Villa", bhk:"4+ BHK", budget:180 },
+  { location:"Delhi", type:"Apartment", bhk:"3 BHK", budget:110 },
+  { location:"Mumbai", type:"Apartment", bhk:"2 BHK", budget:80 },
+  { location:"Bangalore", type:"Apartment", bhk:"2 BHK", budget:55 },
+  { location:"Noida", type:"Apartment", bhk:"3 BHK", budget:95 },
+  { location:"Pune", type:"Apartment", bhk:"2 BHK", budget:70 },
+  { location:"Mumbai", type:"Apartment", bhk:"3 BHK", budget:100 },
+  { location:"Chennai", type:"Apartment", bhk:"3 BHK", budget:85 },
+  { location:"Gurgaon", type:"Apartment", bhk:"3 BHK", budget:115 },
+  { location:"Bangalore", type:"Apartment", bhk:"2 BHK", budget:65 },
+  { location:"Mumbai", type:"Commercial", bhk:"Office Space", budget:180 },
+  { location:"Delhi", type:"Apartment", bhk:"3 BHK", budget:130 },
+  { location:"Pune", type:"Apartment", bhk:"3 BHK", budget:105 },
+  { location:"Mumbai", type:"Apartment", bhk:"3 BHK", budget:120 },
+  { location:"Bangalore", type:"Apartment", bhk:"2 BHK", budget:50 },
+  { location:"Gurgaon", type:"Apartment", bhk:"3 BHK", budget:140 },
+  { location:"Hyderabad", type:"Apartment", bhk:"3 BHK", budget:90 },
+  { location:"Mumbai", type:"Villa", bhk:"4+ BHK", budget:220 },
+  { location:"Pune", type:"Apartment", bhk:"2 BHK", budget:75 },
+  { location:"Delhi", type:"Apartment", bhk:"3 BHK", budget:125 },
+  { location:"Bangalore", type:"Apartment", bhk:"3 BHK", budget:95 },
+  { location:"Mumbai", type:"Apartment", bhk:"2 BHK", budget:85 },
+  { location:"Noida", type:"Commercial", bhk:"Office Space", budget:160 },
+  { location:"Pune", type:"Villa", bhk:"3 BHK", budget:150 },
+  { location:"Chennai", type:"Apartment", bhk:"2 BHK", budget:55 },
+  { location:"Bangalore", type:"Apartment", bhk:"2 BHK", budget:60 },
+  { location:"Mumbai", type:"Apartment", bhk:"3 BHK", budget:115 },
+  { location:"Delhi", type:"Apartment", bhk:"3 BHK", budget:135 },
+  { location:"Gurgaon", type:"Apartment", bhk:"4+ BHK", budget:180 },
+  { location:"Pune", type:"Apartment", bhk:"2 BHK", budget:70 },
+  { location:"Mumbai", type:"Apartment", bhk:"3 BHK", budget:100 },
+  { location:"Bangalore", type:"Apartment", bhk:"3 BHK", budget:110 },
+  { location:"Delhi", type:"Apartment", bhk:"3 BHK", budget:140 },
+  { location:"Mumbai", type:"Apartment", bhk:"3 BHK", budget:125 },
+  { location:"Pune", type:"Apartment", bhk:"3 BHK", budget:90 }
+];
+
+// Store customers in format expected by customer-login / customer-dashboard
+const users = CUSTOMERS.map(c => ({
+  email: c.email,
+  password: c.password,
+  age: c.age,
+  gender: c.gender,
+  profession: c.profession,
+  maritalStatus: c.maritalStatus,
+  createdAt: new Date().toISOString()
+}));
+localStorage.setItem("customers", JSON.stringify(users));
+
+// Store preferences keyed by email
+const prefs = {};
+CUSTOMERS.forEach((c, i) => {
+  const p = PREFERENCES[i];
+  prefs[c.email] = { location: p.location, type: p.type, bhk: p.bhk, budget: p.budget };
+});
+localStorage.setItem("customerPreferences", JSON.stringify(prefs));
+
+alert("50 Indian customers seeded! Login with any email (e.g. amit24@gmail.com) / password: demo123");
+window.location.href = "customer-login.html";
+</script>
+</body>
+</html>

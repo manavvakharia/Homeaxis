@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broker Dashboard | HomeAxis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f8f6f1;
+  --champagne:#f3efe6;
+  --gold:#c6a75e;
+  --gold-soft:#e5d2a4;
+  --dark:#111111;
+  --card-dark:#161616;
+  --text-main:#1c1c1c;
+  --text-light:#ffffff;
+  --text-muted:#6b6b6b;
+  --border-soft:rgba(0,0,0,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Montserrat, sans-serif;
+  background:var(--bg);
+  color:var(--text-main);
+  min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  background:#111111;
+  padding:1.2rem 2rem;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:900;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+}
+
+.user-info{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  color:#fff;
+}
+
+.btn{
+  padding:.6rem 1.6rem;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#000;
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .3s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(198,167,94,.45);
+}
+
+/* ================= LAYOUT ================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:3rem 1.5rem 4rem;
+}
+
+/* ================= SECTION (Balanced Luxury Panel) ================= */
+
+.section{
+  background:#161616;
+  border-radius:24px;
+  padding:2.5rem 3rem;
+  margin-bottom:2.5rem;
+  border:1px solid rgba(198,167,94,.15);
+  box-shadow:0 30px 70px rgba(0,0,0,.25);
+  color:#fff;
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Section Title */
+.section-title{
+  font-size:.95rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  color:var(--gold-soft);
+}
+
+/* ================= FORM GRID (Better Structure) ================= */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:2rem;
+  align-items:start;
+}
+
+/* On smaller screens */
+@media(max-width:1100px){
+  .form-grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+
+@media(max-width:720px){
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CHECKLIST (Fix Alignment) ================= */
+
+.checklist{
+  display:grid;
+  grid-template-columns:repeat(2, auto);
+  gap:1rem 2rem;
+  margin-top:.6rem;
+}
+
+.check-item{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-size:.8rem;
+  letter-spacing:.05em;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.check-item input{
+  accent-color:var(--gold);
+  width:16px;
+  height:16px;
+}
+
+/* ================= BUTTON SPACING ================= */
+
+.section .btn{
+  margin-top:2rem;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:.75rem .9rem;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#111;
+  color:#fff;
+  font-family:inherit;
+}
+
+.list{
+  display:grid;
+  gap:1rem;
+}
+.trust-badges{
+  display:flex;
+  gap:.45rem;
+  flex-wrap:wrap;
+  margin-top:.55rem;
+}
+.trust-badge{
+  border-radius:999px;
+  padding:.2rem .58rem;
+  font-size:.58rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.trust-badge.verified{
+  background:rgba(60,200,120,.16);
+  border:1px solid rgba(60,200,120,.35);
+  color:#7cf2b1;
+}
+.trust-badge.rera{
+  background:rgba(198,167,94,.15);
+  border:1px solid rgba(198,167,94,.35);
+  color:var(--gold-soft);
+}
+.broker-keyfacts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.5rem;
+  margin-top:.65rem;
+}
+.broker-kf{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:.42rem .5rem;
+  background:rgba(255,255,255,.02);
+}
+.broker-kf-label{
+  display:block;
+  font-size:.52rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:rgba(255,255,255,.62);
+}
+.broker-kf-value{
+  display:block;
+  margin-top:.14rem;
+  font-size:.7rem;
+  color:#fff;
+  font-weight:600;
+}
+.booking-note{
+  margin-top:.5rem;
+  font-size:.68rem;
+  color:rgba(255,255,255,.62);
+}
+.image-preview{
+  margin-top:.9rem;
+  border:1px solid rgba(198,167,94,.2);
+  border-radius:12px;
+  padding:.7rem;
+  background:#101010;
+}
+.image-preview img{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:10px;
+  display:none;
+}
+.image-preview small{
+  display:block;
+  margin-top:.5rem;
+  color:rgba(255,255,255,.65);
+  font-size:.74rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">🏢 Broker Dashboard</div>
+    <div class="user-info">
+      <span id="brokerEmail"></span>
+      <button class="btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ADD PROPERTY (BROKER) -->
+  <div class="section">
+    <h2 class="section-title">Add Property Listing</h2>
+    <form id="brokerPropertyForm" onsubmit="addBrokerProperty(event)">
+      <div class="form-grid">
+        <div class="form-group"><label>Property Name</label><input name="name" required></div>
+        <div class="form-group"><label>Location</label><input name="location" required></div>
+        <div class="form-group"><label>Type</label><select name="type" required><option value="">Select</option><option>Apartment</option><option>Villa</option><option>Commercial</option><option>Plot</option></select></div>
+        <div class="form-group"><label>Price (INR)</label><input type="number" name="price" required></div>
+        <div class="form-group"><label>Area (sq.ft)</label><input type="number" name="area" required></div>
+        <div class="form-group"><label>BHK</label><input name="bhk" placeholder="e.g. 3 or 3 BHK" required></div>
+        <div class="form-group"><label>RERA Checked</label><select name="reraChecked" required><option value="">Select</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+        <div class="form-group"><label>Possession Status</label><select name="possessionStatus" required><option value="">Select</option><option value="Ready">Ready</option><option value="Under Construction">Under Construction</option><option value="OC Received">OC Received</option></select></div>
+        <div class="form-group"><label>Image URL (optional)</label><input name="image" placeholder="https://..."></div>
+        <div class="form-group"><label>Upload Image</label><input type="file" name="imageFile" accept="image/*"></div>
+      </div>
+      <div class="image-preview">
+        <img id="brokerImagePreview" alt="Property image preview" onerror="this.style.display='none'; document.getElementById('brokerPreviewStatus').textContent='Could not load image. Check URL/path.';">
+        <small id="brokerPreviewStatus">Preview will appear here</small>
+      </div>
+      <div style="margin-top:1rem;">
+        <label>Description</label>
+        <textarea name="desc" rows="3" required></textarea>
+      </div>
+      <button class="btn" style="margin-top:1.2rem;">Submit For Admin Approval</button>
+    </form>
+  </div>
+
+  <!-- ADD REQUIREMENT -->
+  <div class="section">
+    <h2 class="section-title">Add Customer Requirement</h2>
+    <form onsubmit="addRequirement(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Age Min</label>
+          <input type="number" required name="ageMin">
+        </div>
+        <div class="form-group">
+          <label>Age Max</label>
+          <input type="number" required name="ageMax">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select name="gender" required>
+            <option>Any</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="form-group profession-checklist">
+          <label>Profession</label>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox" name="profession" value="IT Professional"> IT Professional</label>
+            <label class="check-item"><input type="checkbox" name="profession" value="Doctor"> Doctor</label>
+            <label class="check-item"><input type="checkbox" name="profession" value="Engineer"> Engineer</label>
+            <label class="check-item"><input type="checkbox" name="profession" value="Business Owner"> Business Owner</label>
+            <label class="check-item"><input type="checkbox" name="profession" value="Government Employee"> Government Employee</label>
+            <label class="check-item"><input type="checkbox" name="profession" value="Teacher"> Teacher</label>
+            <label class="check-item"><input type="checkbox" name="profession" value="Other"> Other</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Guarantee Flat</label>
+          <select name="guaranteeFlat">
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" style="margin-top:1.2rem;">Add Requirement</button>
+    </form>
+  </div>
+
+  <!-- FILE DATABASE UPLOAD -->
+  <div class="section">
+    <h2 class="section-title">Customer Database</h2>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;">Upload a JSON file with customers, or download the current database. Format: <code style="font-size:.75rem;">{"customers":[{"email","age","gender","profession","maritalStatus","contact_no","preference":{"location","type","bhk","budget"}}]}</code></p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+      <label class="btn" style="margin:0;cursor:pointer;">
+        📤 Upload customers-db.json
+        <input type="file" accept=".json,application/json" id="dbFileInput" style="display:none" onchange="uploadDbFile(event)">
+      </label>
+      <a href="#" id="downloadDbLink" class="btn" style="text-decoration:none;margin:0;" onclick="downloadDbFile(event)">📥 Download</a>
+      <span id="dbUploadStatus" style="font-size:.8rem;color:var(--text-muted);"></span>
+    </div>
+  </div>
+
+  <!-- POTENTIAL CUSTOMERS (filter by profile) -->
+  <div class="section">
+    <h2 class="section-title">Potential Customers</h2>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;">Filter registered customers by profile to find leads matching your criteria.</p>
+    <div class="form-grid" style="margin-bottom:1.5rem;">
+      <div class="form-group">
+        <label>Age Min</label>
+        <input type="number" id="filterAgeMin" placeholder="18" min="18">
+      </div>
+      <div class="form-group">
+        <label>Age Max</label>
+        <input type="number" id="filterAgeMax" placeholder="65" min="18">
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <select id="filterGender">
+          <option value="">Any</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group profession-checklist">
+        <label>Profession</label>
+        <div class="checklist">
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="IT Professional"> IT Professional</label>
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="Doctor"> Doctor</label>
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="Engineer"> Engineer</label>
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="Business Owner"> Business Owner</label>
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="Government Employee"> Government Employee</label>
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="Teacher"> Teacher</label>
+          <label class="check-item"><input type="checkbox" name="filterProfession" value="Other"> Other</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Marital Status</label>
+        <select id="filterMaritalStatus">
+          <option value="">Any</option>
+          <option>Single</option>
+          <option>Married</option>
+          <option>Divorced</option>
+          <option>Widowed</option>
+        </select>
+      </div>
+      <div class="form-group" style="align-self:flex-end;">
+        <button class="btn" onclick="filterCustomers()">Filter Customers</button>
+      </div>
+    </div>
+    <div id="customersList" class="list"></div>
+  </div>
+
+  <!-- REQUIREMENTS LIST -->
+  <div class="section">
+    <h2 class="section-title">Your Requirements</h2>
+    <div id="requirementsList" class="list"></div>
+  </div>
+
+  <!-- BUILDER PROPERTIES -->
+  <div class="section">
+    <h2 class="section-title">Approved Properties</h2>
+    <div id="builderPropertiesList" class="list"></div>
+  </div>
+
+</div>
+
+<script>
+/* 🔐 AUTH CHECK (CUSTOMER STYLE) */
+if (localStorage.getItem("brokerLoggedIn") !== "true") {
+  window.location.href = "broker-login.html";
+}
+
+const brokerEmail = localStorage.getItem("brokerEmail");
+document.getElementById("brokerEmail").textContent = brokerEmail;
+
+/* LOGOUT */
+function logout(){
+  localStorage.removeItem("brokerLoggedIn");
+  localStorage.removeItem("brokerEmail");
+  window.location.href = "index.html";
+}
+
+/* FILE DATABASE UPLOAD / DOWNLOAD */
+async function uploadDbFile(e){
+  const file = e.target.files?.[0];
+  if(!file){ return; }
+  const status = document.getElementById("dbUploadStatus");
+  try {
+    const text = await file.text();
+    const json = JSON.parse(text);
+    const customers = Array.isArray(json) ? json : (json.customers || []);
+    if(!customers.length){ status.textContent = "No customers in file"; return; }
+    const res = await fetch(`${API_BASE}/api/customers/upload`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ customers })
+    });
+    const data = await res.json();
+    if(res.ok){
+      status.textContent = `✅ Uploaded ${data.count} customers`;
+      filterCustomers();
+    } else {
+      status.textContent = "❌ " + (data.error || "Upload failed");
+    }
+  } catch(err){
+    status.textContent = "❌ Invalid JSON: " + err.message;
+  }
+  e.target.value = "";
+}
+
+function downloadDbFile(e){
+  e.preventDefault();
+  window.location.href = `${API_BASE}/api/customers/download`;
+}
+
+/* ADD REQUIREMENT */
+function addRequirement(e){
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const req = Object.fromEntries([...fd.entries()].filter(([k,v]) => k !== "profession"));
+  req.professions = fd.getAll("profession");
+  if(!req.professions || req.professions.length === 0){
+    alert("Please select at least one profession");
+    return;
+  }
+  req.brokerEmail = brokerEmail;
+  req.createdAt = new Date().toISOString();
+
+  const all = JSON.parse(localStorage.getItem("brokerRequirements") || "[]");
+  all.push(req);
+  localStorage.setItem("brokerRequirements", JSON.stringify(all));
+
+  e.target.reset();
+  loadRequirements();
+}
+
+/* BROKER PROPERTY UPLOAD */
+function readFileAsDataURL(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function normalizeImageValue(raw){
+  const value = String(raw || "").trim();
+  if(!value) return "";
+  const isAbsoluteWeb = /^(https?:)?\/\//i.test(value);
+  const isData = /^data:image\//i.test(value);
+  const isProjectRelative = /^(images\/|\.\/images\/|\/images\/)/i.test(value);
+  const windowsPathLike = /^[a-zA-Z]:\\/.test(value) || value.includes("\\");
+  const looksLikeFileName = !value.includes("://");
+  if (isAbsoluteWeb || isData || isProjectRelative) return value;
+  if (windowsPathLike) {
+    const fileName = value.split("\\").pop();
+    return fileName ? `images/${fileName}` : "";
+  }
+  if (looksLikeFileName) return `images/${value.replace(/^\/+/, "")}`;
+  return value;
+}
+
+function setupBrokerImagePreview(){
+  const form = document.getElementById("brokerPropertyForm");
+  if(!form) return;
+  const urlInput = form.querySelector('input[name="image"]');
+  const fileInput = form.querySelector('input[name="imageFile"]');
+  const preview = document.getElementById("brokerImagePreview");
+  const status = document.getElementById("brokerPreviewStatus");
+  if(!urlInput || !fileInput || !preview || !status) return;
+
+  const showFromUrl = () => {
+    const src = normalizeImageValue(urlInput.value);
+    if(!src){
+      preview.style.display = "none";
+      status.textContent = "Preview will appear here";
+      return;
+    }
+    preview.src = src;
+    preview.style.display = "block";
+    status.textContent = "Preview from image URL/path";
+  };
+
+  const showFromFile = async () => {
+    const file = fileInput.files?.[0];
+    if(!file){
+      showFromUrl();
+      return;
+    }
+    try{
+      preview.src = await readFileAsDataURL(file);
+      preview.style.display = "block";
+      status.textContent = "Preview from uploaded file";
+    } catch {
+      preview.style.display = "none";
+      status.textContent = "Could not read selected file";
+    }
+  };
+
+  urlInput.addEventListener("input", showFromUrl);
+  fileInput.addEventListener("change", showFromFile);
+}
+
+async function addBrokerProperty(e){
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const imageUrl = normalizeImageValue(fd.get("image"));
+  const imageFile = fd.get("imageFile");
+  let imageValue = imageUrl;
+
+  if (!imageValue && imageFile && imageFile.size > 0) {
+    imageValue = await readFileAsDataURL(imageFile);
+  }
+
+  if (!imageValue) {
+    alert("Please provide image URL or upload an image file.");
+    return;
+  }
+
+  const item = {
+    id: `prop_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+    name: fd.get("name"),
+    propertyName: fd.get("name"),
+    location: fd.get("location"),
+    type: fd.get("type"),
+    propertyType: fd.get("type"),
+    price: fd.get("price"),
+    area: fd.get("area"),
+    bhk: fd.get("bhk"),
+    reraChecked: fd.get("reraChecked"),
+    possessionStatus: fd.get("possessionStatus"),
+    desc: fd.get("desc"),
+    image: imageValue,
+    brokerEmail,
+    sourceRole: "broker",
+    status: "pending",
+    createdAt: Date.now()
+  };
+  const all = JSON.parse(localStorage.getItem("builderProperties") || "[]");
+  all.push(item);
+  localStorage.setItem("builderProperties", JSON.stringify(all));
+  e.target.reset();
+  const preview = document.getElementById("brokerImagePreview");
+  const status = document.getElementById("brokerPreviewStatus");
+  if(preview) preview.style.display = "none";
+  if(status) status.textContent = "Preview will appear here";
+  alert("Property submitted. It will appear on index after admin approval.");
+  loadBuilderProperties();
+}
+
+/* POTENTIAL CUSTOMERS - fetches from database API (fallback: localStorage) */
+const API_BASE = (window.location.protocol === "http:" || window.location.protocol === "https:") ? window.location.origin : "http://localhost:3000";
+
+async function filterCustomers(){
+  const ageMin = document.getElementById("filterAgeMin").value;
+  const ageMax = document.getElementById("filterAgeMax").value;
+  const gender = document.getElementById("filterGender").value;
+  const professions = [...document.querySelectorAll('input[name="filterProfession"]:checked')].map(cb => cb.value);
+  const maritalStatus = document.getElementById("filterMaritalStatus").value;
+
+  const list = document.getElementById("customersList");
+  list.innerHTML = "<small>Loading...</small>";
+
+  let customers = [];
+  let fromDb = false;
+
+  try {
+    const params = new URLSearchParams();
+    if(ageMin) params.set("ageMin", ageMin);
+    if(ageMax) params.set("ageMax", ageMax);
+    if(gender) params.set("gender", gender);
+    if(professions.length) params.set("professions", professions.join(","));
+    if(maritalStatus) params.set("maritalStatus", maritalStatus);
+
+    const res = await fetch(`${API_BASE}/api/customers?${params}`);
+    if(res.ok){
+      const data = await res.json();
+      customers = (data.customers || []).map(c => ({
+        email: c.email,
+        age: c.age,
+        gender: c.gender,
+        profession: c.profession,
+        maritalStatus: c.maritalStatus,
+        _preference: c.preference || null
+      }));
+      fromDb = true;
+    } else throw new Error("API error");
+  } catch (e) {
+    /* Fallback to localStorage (customer login data - not from DB) */
+    let local = JSON.parse(localStorage.getItem("customers") || "[]");
+    const prefs = JSON.parse(localStorage.getItem("customerPreferences") || "{}");
+    local = local.filter(c => {
+      if(!c.email) return false;
+      if(ageMin && (c.age == null || c.age < parseInt(ageMin,10))) return false;
+      if(ageMax && (c.age == null || c.age > parseInt(ageMax,10))) return false;
+      if(gender && c.gender !== gender) return false;
+      if(professions.length && !professions.includes(c.profession)) return false;
+      if(maritalStatus && c.maritalStatus !== maritalStatus) return false;
+      return true;
+    });
+    customers = local.map(c => ({ ...c, _preference: prefs[c.email] || null }));
+  }
+
+  if(!customers.length){
+    list.innerHTML = `<small>No customers match your filters.${fromDb ? "" : " (Using localStorage — start server for DB.)"} Try broadening criteria.</small>`;
+    return;
+  }
+
+  list.innerHTML = customers.map(c => {
+    const p = c._preference || {};
+    const prefsStr = p.location || p.type || p.budget ? `Looking for: ${p.location || "Any"} · ${p.type || "Any"} · Budget ₹${p.budget ? Number(p.budget).toLocaleString() : "—"}` : "No preferences set";
+    return `
+    <div class="card">
+      <h4>${c.email}</h4>
+      <small>${c.age ? c.age + " yrs" : "—"} · ${c.gender || "—"} · ${c.profession || "—"} · ${c.maritalStatus || "—"}</small>
+      <div style="margin-top:.5rem;font-size:.85rem;color:var(--text-muted);">
+        ${prefsStr}
+      </div>
+    </div>
+  `}).join("");
+}
+
+/* LOAD REQUIREMENTS */
+function loadRequirements(){
+  const list = document.getElementById("requirementsList");
+  const all = JSON.parse(localStorage.getItem("brokerRequirements") || "[]")
+    .filter(r => r.brokerEmail === brokerEmail);
+
+  if(!all.length){
+    list.innerHTML = "<small>No requirements added yet.</small>";
+    return;
+  }
+
+  list.innerHTML = all.map((r, i) => {
+    const profs = Array.isArray(r.professions) ? r.professions.join(", ") : (r.profession || "—");
+    return `
+    <div class="card">
+      <h4>Requirement #${i + 1}</h4>
+      <small>${profs} · ${r.gender}</small>
+      <div style="margin-top:.5rem;font-size:.85rem;">
+        Age: ${r.ageMin}-${r.ageMax}<br>
+        Guarantee: ${r.guaranteeFlat}
+      </div>
+    </div>
+  `}).join("");
+}
+
+/* LOAD BUILDER PROPERTIES */
+function loadBuilderProperties(){
+  const list = document.getElementById("builderPropertiesList");
+  const props = JSON.parse(localStorage.getItem("builderProperties") || "[]")
+    .filter(p => (p.status || "pending") === "approved");
+
+  if(!props.length){
+    list.innerHTML = "<small>No approved properties available yet.</small>";
+    return;
+  }
+
+  list.innerHTML = props.map(p => `
+    <div class="card">
+      <h4>${p.name || p.propertyName || "Property"}</h4>
+      <small>${p.location || ""} · ${p.type || p.propertyType || ""}</small>
+      <div class="trust-badges">
+        <span class="trust-badge verified">Verified</span>
+        <span class="trust-badge rera">RERA ${(p.reraChecked || "yes").toLowerCase() === "yes" ? "Checked" : "Pending"}</span>
+      </div>
+      <div style="margin-top:.5rem;font-size:.85rem;">
+        ₹${Number(p.price || 0).toLocaleString()} · ${p.area || ""} sq.ft · ${p.bhk || ""}
+      </div>
+      <div class="broker-keyfacts">
+        <div class="broker-kf"><span class="broker-kf-label">BHK</span><span class="broker-kf-value">${p.bhk || "N/A"}</span></div>
+        <div class="broker-kf"><span class="broker-kf-label">Area</span><span class="broker-kf-value">${p.area ? p.area + " sq.ft" : "N/A"}</span></div>
+        <div class="broker-kf"><span class="broker-kf-label">Possession</span><span class="broker-kf-value">${p.possessionStatus || "Ready"}</span></div>
+      </div>
+      <div class="booking-note">Refundable token. Terms apply.</div>
+    </div>
+  `).join("");
+}
+
+filterCustomers();
+loadRequirements();
+loadBuilderProperties();
+setupBrokerImagePreview();
+</script>
+
+</body>
+</html>
